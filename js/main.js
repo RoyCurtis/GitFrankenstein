@@ -1,51 +1,82 @@
 // Kindle Triviamaster by Roy Curtis 2015
 
 // Globals
-var DATABASE;
+var DATABASE   = {};
 var CATEGORIES = [];
 
 var eCatRoll      = $('#catRoll');
 var eQuestionRoll = $('#questionRoll');
-var eDebugger     = $('#debug');
+var eBtnPrevPage  = $('#btnPrevPage');
+var eBtnNextPage  = $('#btnNextPage');
 
 var eSelectionScreen = $('#selectionScreen');
 var eQuestionScreen  = $('#questionScreen');
 
+var currentCategory;
+var entriesPerPage = 9;
+var currentPage    = 0;
+var totalPages     = 0;
+
 // Functions
-function populateCategories()
+function prepareDatabase(results)
 {
-    $.each(DATABASE, function (_, question) {
+    var db   = {};
+    var data = results.data;
+
+    $.each(data, function (_, question) {
+        var category = question['Category'];
+
         if ( $.inArray(question['Category'], CATEGORIES) == -1 )
         {
-            var category = question['Category'];
-            var option   = $('<option>')
+            var option = $('<option>')
                 .attr('value', category)
                 .text(category);
 
             eCatRoll.append(option);
             CATEGORIES.push(category);
+            db[category] = [];
         }
+
+        db[category].push(question);
     });
+
+    console.log(db);
+    return db;
 }
 
 function selectCategory(category)
 {
-    eQuestionRoll.children().unbind();
+    currentCategory = DATABASE[category];
+    currentPage     = 0;
+    totalPages      = Math.ceil(DATABASE[category].length / entriesPerPage);
+
+    selectPage(0);
+}
+
+function selectPage(page)
+{
+    var firstEntry = page * entriesPerPage;
+    var lastEntry  = firstEntry + entriesPerPage;
+    currentPage = page;
+
+    eQuestionRoll.children().removeData().unbind();
     eQuestionRoll.empty();
 
-    $.each(DATABASE, function (_, question) {
-        if ( question['Category'] == category )
-        {
-            var entry = $('<li>')
-                .text(question['Question'])
-                .data("question", question)
-                .click( function (event) {
-                    showQuestion(event.currentTarget);
-                });
+    for (var i = firstEntry; i < lastEntry; i++)
+    {
+        var entryData = currentCategory[i];
 
-            eQuestionRoll.append(entry);
-        }
-    });
+        if (!entryData) break;
+
+        var entry = $('<li>')
+            .text(entryData['Question'])
+            .data("question", entryData)
+            .click( function (event) {
+                showQuestion(event.currentTarget);
+            });
+
+        eQuestionRoll.append(entry);
+    }
 }
 
 function showQuestion(target)
@@ -74,9 +105,8 @@ function showQuestion(target)
 // Events
 function onDownload(results)
 {
-    DATABASE = results.data;
+    DATABASE = prepareDatabase(results);
 
-    populateCategories();
     selectCategory("General");
     eCatRoll.val("General");
 
@@ -93,6 +123,35 @@ Papa.parse("RoyCurtis2012.csv", {
     complete: onDownload
 });
 
-eQuestionScreen.click(function() {
+eQuestionScreen.click(function()
+{
     eQuestionScreen.addClass("hidden");
+});
+
+eBtnPrevPage.click(function ()
+{
+    currentPage--;
+
+    if (currentPage < 0)
+        currentPage = totalPages - 1;
+
+    selectPage(currentPage);
+});
+
+eBtnNextPage.click(function ()
+{
+    currentPage++;
+
+    if (currentPage >= totalPages)
+        currentPage = 0;
+
+    selectPage(currentPage);
+});
+
+// Emulates touch response CSS on Kindle
+$('btn').click(function(event)
+{
+    var btn = $(event.currentTarget);
+    btn.addClass('touched');
+    setTimeout(function() { btn.removeClass('touched'); }, 250);
 });

@@ -10,10 +10,11 @@
 html, body
 {
     height: 100%;
+    overflow: hidden;
     font-family: Caecilia, "Times New Roman", serif;
 }
 
-select
+select, btn
 {
     font-family: Futura, sans-serif;
 }
@@ -22,11 +23,6 @@ select
 .hidden { display: none; }
 
 // Views
-#debug
-{
-    white-space: pre;
-}
-
 #selectionScreen
 {
     position: absolute;
@@ -47,9 +43,9 @@ select
 
     #questionRoll li
     {
-        font-size: x-small;
-        padding: 0.6em 0.4em;
-        height: 60px;
+        font-size: small;
+        padding: 0.2em 0.4em;
+        height: 64px;
         text-overflow: ellipsis;
         overflow: hidden;
 
@@ -66,14 +62,21 @@ select
         padding:     .4em .2em;
         text-align:  center;
         background:  white;
+        font-size:   x-large;
         font-weight: bold;
         border-top:  2px solid black;
-    }
 
-    #btnNextPage
-    {
-        left: 50%;
-        border-left: 2px solid black;
+        &.touched
+        {
+            background: black;
+            color: white;
+        }
+
+        &#btnNextPage
+        {
+            left: 50%;
+            border-left: 2px solid black;
+        }
     }
 }
 
@@ -133,5 +136,6 @@ select
         font-style: italic;
         text-align: center;
         padding: 1em;
+        color: #AAA;
     }
 }
