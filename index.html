@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Kindle Triviamaster</title>
+
+    <link type="text/css" rel="stylesheet" href="css/main.css"/>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0" />
+</head>
+
+<body>
+    <div id="selectionScreen" class="hidden">
+        <select id="catRoll"></select>
+
+        <ul id="questionRoll">
+            <li><em>Loading...</em></li>
+        </ul>
+    </div>
+
+    <div id="questionScreen">
+        <question>
+            How much wood could a woodchuck chuck
+            if a woodchuck could chuck wood?
+        </question>
+    </div>
+</body>
+
+<scripts>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/PapaParse/4.1.0/papaparse.min.js"></script>
+    <script src="js/main.js"></script>
+</scripts>
+</html>
