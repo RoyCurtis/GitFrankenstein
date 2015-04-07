@@ -4,16 +4,18 @@
 var DATABASE   = {};
 var CATEGORIES = [];
 
-var eCatRoll      = $('#catRoll');
 var eQuestionRoll = $('#questionRoll');
 var eBtnPrevPage  = $('#btnPrevPage');
 var eBtnNextPage  = $('#btnNextPage');
+var eBtnRandom    = $('#btnRandom');
+var eBtnCategory  = $('#btnCategory');
 
 var eSelectionScreen = $('#selectionScreen');
 var eQuestionScreen  = $('#questionScreen');
+var eCategoryScreen  = $('#categoryScreen');
 
 var currentCategory;
-var entriesPerPage = 9;
+var entriesPerPage = 10;
 var currentPage    = 0;
 var totalPages     = 0;
 
@@ -28,11 +30,15 @@ function prepareDatabase(results)
 
         if ( $.inArray(question['Category'], CATEGORIES) == -1 )
         {
-            var option = $('<option>')
-                .attr('value', category)
-                .text(category);
+            var option = $('<btn>')
+                .text(category)
+                .click(function()
+                {
+                    selectCategory(category);
+                    eCategoryScreen.addClass("hidden");
+                });
 
-            eCatRoll.append(option);
+            eCategoryScreen.append(option);
             CATEGORIES.push(category);
             db[category] = [];
         }
@@ -40,7 +46,7 @@ function prepareDatabase(results)
         db[category].push(question);
     });
 
-    console.log(db);
+    eCategoryScreen.append("<div>Select a category</div>");
     return db;
 }
 
@@ -51,6 +57,7 @@ function selectCategory(category)
     totalPages      = Math.ceil(DATABASE[category].length / entriesPerPage);
 
     selectPage(0);
+    eBtnCategory.text(category);
 }
 
 function selectPage(page)
@@ -103,55 +110,54 @@ function showQuestion(target)
 }
 
 // Events
-function onDownload(results)
-{
-    DATABASE = prepareDatabase(results);
 
-    selectCategory("General");
-    eCatRoll.val("General");
-
-    eCatRoll.change(function()
-    {
-        selectCategory( eCatRoll.val() );
-    });
-}
 
 // Main
 Papa.parse("RoyCurtis2012.csv", {
     download: true,
     header:   true,
-    complete: onDownload
-});
+    complete: function (results)
+    {
+        DATABASE = prepareDatabase(results);
 
-eQuestionScreen.click(function()
-{
-    eQuestionScreen.addClass("hidden");
-});
+        selectCategory("General");
 
-eBtnPrevPage.click(function ()
-{
-    currentPage--;
+        eQuestionScreen.click(function()
+        {
+            eQuestionScreen.addClass("hidden");
+        });
 
-    if (currentPage < 0)
-        currentPage = totalPages - 1;
+        eBtnPrevPage.click(function ()
+        {
+            currentPage--;
 
-    selectPage(currentPage);
-});
+            if (currentPage < 0)
+                currentPage = totalPages - 1;
 
-eBtnNextPage.click(function ()
-{
-    currentPage++;
+            selectPage(currentPage);
+        });
 
-    if (currentPage >= totalPages)
-        currentPage = 0;
+        eBtnNextPage.click(function ()
+        {
+            currentPage++;
 
-    selectPage(currentPage);
-});
+            if (currentPage >= totalPages)
+                currentPage = 0;
 
-// Emulates touch response CSS on Kindle
-$('btn').click(function(event)
-{
-    var btn = $(event.currentTarget);
-    btn.addClass('touched');
-    setTimeout(function() { btn.removeClass('touched'); }, 250);
+            selectPage(currentPage);
+        });
+
+        eBtnCategory.click(function ()
+        {
+            eCategoryScreen.removeClass("hidden");
+        });
+
+        // Emulates touch response CSS on Kindle
+        $('toolbar > btn').click(function(event)
+        {
+            var btn = $(event.currentTarget);
+            btn.addClass('touched');
+            setTimeout(function() { btn.removeClass('touched'); }, 250);
+        });
+    }
 });

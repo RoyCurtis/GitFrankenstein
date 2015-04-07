@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Kindle Triviamaster</title>
 
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <link type="text/css" rel="stylesheet" href="css/main.css"/>
 
     <!-- Kindle is 600x699 -->
@@ -12,14 +13,19 @@
 
 <body>
     <div id="selectionScreen">
-        <select id="catRoll"></select>
-
         <ul id="questionRoll">
             <li><em>Loading...</em></li>
         </ul>
 
-        <btn id="btnPrevPage">Prev</btn>
-        <btn id="btnNextPage">Next</btn>
+        <toolbar>
+            <btn id="btnPrevPage"><i class="fa fa-chevron-left fa-lg"></i></btn>
+            <btn id="btnNextPage"><i class="fa fa-chevron-right fa-lg"></i></btn>
+            <btn id="btnRandom"><i class="fa fa-random fa-lg"></i></btn>
+            <btn id="btnCategory"><em>Loading...</em></btn>
+        </toolbar>
+    </div>
+
+    <div id="categoryScreen" class="hidden">
     </div>
 
     <div id="questionScreen" class="hidden">
