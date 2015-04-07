@@ -3,7 +3,9 @@
   padding: 0;
   box-sizing: border-box;
 }
+html,
 body {
+  height: 100%;
   font-family: Caecilia, "Times New Roman", serif;
 }
 select {
@@ -11,6 +13,9 @@ select {
 }
 .hidden {
   display: none;
+}
+#debug {
+  white-space: pre;
 }
 #selectionScreen #catRoll {
   width: 100%;
@@ -23,4 +28,56 @@ select {
   padding: 0.2em 0.4em;
   border: none;
   border-bottom: 1px solid #AAAAAA;
+}
+#questionScreen {
+  position: absolute;
+  top: 0;
+  background: white;
+  border-bottom: 2px solid black;
+  box-shadow: 0.25em 0.5em rgba(0, 0, 0, 0.5);
+}
+#questionScreen question {
+  display: block;
+  margin: 1em auto;
+  padding: 0.5em 0;
+  width: 90%;
+  border: double black;
+  border-width: 4px 0;
+  text-align: center;
+  font-size: x-large;
+}
+#questionScreen answer {
+  display: block;
+  margin: 0.5em auto;
+  padding: 0.2em 0.4em;
+  width: 90%;
+  border: 2px solid black;
+  border-radius: 4px;
+  text-align: right;
+  font-size: large;
+  font-weight: bold;
+}
+#questionScreen answer:before {
+  float: left;
+}
+#questionScreen answer:nth-of-type(1):before {
+  content: "A";
+}
+#questionScreen answer:nth-of-type(2):before {
+  content: "B";
+}
+#questionScreen answer:nth-of-type(3):before {
+  content: "C";
+}
+#questionScreen answer:nth-of-type(4):before {
+  content: "D";
+}
+#questionScreen answer.correct {
+  background: black;
+  color: white;
+}
+#questionScreen > div {
+  font-style: italic;
+  text-align: center;
+  padding: 1em;
 }

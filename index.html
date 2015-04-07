@@ -9,8 +9,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0" />
 </head>
 
-<body>
-    <div id="selectionScreen" class="hidden">
+<body id="top">
+    <div id="debug" class="hidden">
+
+    </div>
+
+    <div id="selectionScreen">
         <select id="catRoll"></select>
 
         <ul id="questionRoll">
@@ -18,11 +22,18 @@
         </ul>
     </div>
 
-    <div id="questionScreen">
+    <div id="questionScreen" class="hidden">
         <question>
             How much wood could a woodchuck chuck
             if a woodchuck could chuck wood?
         </question>
+
+        <answer>88mph</answer>
+        <answer class="correct">1900</answer>
+        <answer>42</answer>
+        <answer>Five elephants</answer>
+
+        <div>Click to close</div>
     </div>
 </body>
 
