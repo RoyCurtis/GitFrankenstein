@@ -28,39 +28,6 @@ function populateCategories()
     });
 }
 
-function showQuestion(target)
-{
-    eQuestionScreen.removeClass("hidden");
-    eQuestionScreen.css("top", window.screenTop);
-    alert(window.screenTop);
-    alert(window.screenY);
-    location.href = "#top";
-
-    var props = [];
-    for (var prop in window)
-        props.push( prop + ": " + window[prop] + "\n");
-
-    // eDebugger.text(props);
-
-    var data    = $(target).data("question");
-    var answers = eQuestionScreen.find("answer");
-
-    eQuestionScreen
-        .find("question").text(data["Question"]);
-
-    for (var i = 0; i < 4; i++)
-    {
-        var answer     = answers.eq(i);
-        var answerText = data["Option " + (i + 1)];
-        answer.text(answerText);
-
-        if ( answerText.toLowerCase() == data["Answer"].toLowerCase() )
-            answer.attr("class", "correct");
-        else
-            answer.attr("class", "");
-    }
-}
-
 function selectCategory(category)
 {
     eQuestionRoll.children().unbind();
@@ -79,6 +46,29 @@ function selectCategory(category)
             eQuestionRoll.append(entry);
         }
     });
+}
+
+function showQuestion(target)
+{
+    eQuestionScreen.removeClass("hidden");
+
+    var data    = $(target).data("question");
+    var answers = eQuestionScreen.find("answer");
+
+    eQuestionScreen
+        .find("question").text(data["Question"]);
+
+    for (var i = 0; i < 4; i++)
+    {
+        var answer     = answers.eq(i);
+        var answerText = data["Option " + (i + 1)];
+        answer.text(answerText);
+
+        if ( answerText.toLowerCase() == data["Answer"].toLowerCase() )
+            answer.attr("class", "correct");
+        else
+            answer.attr("class", "");
+    }
 }
 
 // Events
