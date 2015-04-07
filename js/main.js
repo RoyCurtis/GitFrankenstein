@@ -19,11 +19,17 @@ var entriesPerPage = 10;
 var currentPage    = 0;
 var totalPages     = 0;
 
+// MDN
+function randInt(min, max)
+{
+    return Math.floor(Math.random() * (max - min)) + min;
+}
+
 // Functions
 function prepareDatabase(results)
 {
-    var db   = {};
-    var data = results.data;
+    var database = {};
+    var data     = results.data;
 
     $.each(data, function (_, question) {
         var category = question['Category'];
@@ -40,14 +46,15 @@ function prepareDatabase(results)
 
             eCategoryScreen.append(option);
             CATEGORIES.push(category);
-            db[category] = [];
+            database[category]         = [];
+            database[category].history = [];
         }
 
-        db[category].push(question);
+        database[category].push(question);
     });
 
     eCategoryScreen.append("<div>Select a category</div>");
-    return db;
+    return database;
 }
 
 function selectCategory(category)
@@ -90,7 +97,7 @@ function showQuestion(target)
 {
     eQuestionScreen.removeClass("hidden");
 
-    var data    = $(target).data("question");
+    var data    = $(target).data("question") || target;
     var answers = eQuestionScreen.find("answer");
 
     eQuestionScreen
@@ -145,6 +152,29 @@ Papa.parse("RoyCurtis2012.csv", {
                 currentPage = 0;
 
             selectPage(currentPage);
+        });
+
+        eBtnRandom.click(function ()
+        {
+            for (var i = 0; i < 1000; i++)
+            {
+                var randIdx = randInt(0, currentCategory.length);
+
+                if ( $.inArray(randIdx, currentCategory.history) == -1 )
+                    currentCategory.history.push(randIdx);
+                else
+                    continue;
+
+                if (currentCategory.history.length == currentCategory.length)
+                {
+                    console.log("Exhausted all random");
+                    currentCategory.history = [];
+                }
+
+                var randEntry = currentCategory[randIdx];
+                showQuestion(randEntry);
+                break;
+            }
         });
 
         eBtnCategory.click(function ()
