@@ -9,6 +9,10 @@ body {
   overflow: hidden;
   font-family: Caecilia, "Times New Roman", serif;
 }
+html.splash,
+body.splash {
+  background: url('../res/splash.png') no-repeat;
+}
 .hidden {
   display: none;
 }

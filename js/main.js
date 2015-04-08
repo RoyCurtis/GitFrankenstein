@@ -129,6 +129,15 @@ Papa.parse("RoyCurtis2012.csv", {
 
         selectCategory("General");
 
+        $(document.body).click(function()
+        {
+            $(document.body)
+                .unbind()
+                .removeClass('splash');
+
+            eSelectionScreen.removeClass('hidden');
+        });
+
         eQuestionScreen.click(function()
         {
             eQuestionScreen.addClass("hidden");
