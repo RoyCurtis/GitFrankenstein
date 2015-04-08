@@ -123,6 +123,7 @@ function showQuestion(target)
 Papa.parse("RoyCurtis2012.csv", {
     download: true,
     header:   true,
+    comments: true,
     complete: function (results)
     {
         DATABASE = prepareDatabase(results);
