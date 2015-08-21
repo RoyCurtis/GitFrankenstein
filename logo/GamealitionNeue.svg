@@ -305,9 +305,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.25"
-     inkscape:cx="2195.8163"
-     inkscape:cy="1521.9723"
+     inkscape:zoom="0.5"
+     inkscape:cx="1757.7496"
+     inkscape:cy="2660.9091"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -377,7 +377,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -2473,40 +2473,40 @@
        id="path4285"
        d="m 2406.0625,-257.51355 -122.625,31.25 -15.4375,121.0625 41.6875,116.375 -27.6875,-116.375 24.9485,-102.47389 101.8897,-36.18236 115.5993,14.28125 z"
        style="fill:#2ad4ff;stroke:none"
-       inkscape:export-filename="C:\Users\Polaris\Documents\Repositories\Gamealition\Web\img\logo.png"
-       inkscape:export-xdpi="146.97449"
-       inkscape:export-ydpi="146.97449" />
+       inkscape:export-filename="C:\Users\Polaris\Documents\Repositories\Gamealition\Art\logo\neue-icon.png"
+       inkscape:export-xdpi="153.27339"
+       inkscape:export-ydpi="153.27339" />
     <path
        sodipodi:nodetypes="ccccccc"
        inkscape:connector-curvature="0"
        id="path4287"
        d="m 2312.2617,-214.8573 -9.6315,2.59999 -1.963,10.1751 75.333,84.78738 71.0447,56.65865 -54.7947,-73.6274 z"
        style="font-size:medium;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-indent:0;text-align:start;text-decoration:none;line-height:normal;letter-spacing:normal;word-spacing:normal;text-transform:none;direction:ltr;block-progression:tb;writing-mode:lr-tb;text-anchor:start;baseline-shift:baseline;color:#000000;fill:#502d16;fill-opacity:1;stroke:none;stroke-width:25;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate;font-family:Sans;-inkscape-font-specification:Sans"
-       inkscape:export-filename="C:\Users\Polaris\Documents\Repositories\Gamealition\Web\img\logo.png"
-       inkscape:export-xdpi="146.97449"
-       inkscape:export-ydpi="146.97449" />
+       inkscape:export-filename="C:\Users\Polaris\Documents\Repositories\Gamealition\Art\logo\neue-icon.png"
+       inkscape:export-xdpi="153.27339"
+       inkscape:export-ydpi="153.27339" />
     <path
        inkscape:connector-curvature="0"
        id="path4289"
        d="m 2302.6302,-212.25731 9.6315,-2.59999 79.9883,80.59375 -8.125,8.48438 z"
        style="opacity:0.1;fill:#ffffff;stroke:none"
-       inkscape:export-filename="C:\Users\Polaris\Documents\Repositories\Gamealition\Web\img\logo.png"
-       inkscape:export-xdpi="146.97449"
-       inkscape:export-ydpi="146.97449" />
+       inkscape:export-filename="C:\Users\Polaris\Documents\Repositories\Gamealition\Art\logo\neue-icon.png"
+       inkscape:export-xdpi="153.27339"
+       inkscape:export-ydpi="153.27339" />
     <path
        inkscape:connector-curvature="0"
        id="path4291"
        d="m 2300.6672,-202.08221 1.963,-10.17507 81.495,86.47808 -8.125,8.48437 z"
        style="opacity:0.1;fill:#000000;stroke:none"
-       inkscape:export-filename="C:\Users\Polaris\Documents\Repositories\Gamealition\Web\img\logo.png"
-       inkscape:export-xdpi="146.97449"
-       inkscape:export-ydpi="146.97449" />
+       inkscape:export-filename="C:\Users\Polaris\Documents\Repositories\Gamealition\Art\logo\neue-icon.png"
+       inkscape:export-xdpi="153.27339"
+       inkscape:export-ydpi="153.27339" />
     <g
        transform="translate(342,374)"
        id="g4293"
-       inkscape:export-filename="C:\Users\Polaris\Documents\Repositories\Gamealition\Web\img\logo.png"
-       inkscape:export-xdpi="146.97449"
-       inkscape:export-ydpi="146.97449">
+       inkscape:export-filename="C:\Users\Polaris\Documents\Repositories\Gamealition\Art\logo\neue-icon.png"
+       inkscape:export-xdpi="153.27339"
+       inkscape:export-ydpi="153.27339">
       <path
          style="fill:#00ccff;stroke:none"
          d="m 2179.2166,-540.74121 -11.222,-57.20521 -99.2196,-11.76949 -92.8611,37.49512 -11.6398,41.04094 -14.2887,51.97407 13.355,53.87919 14.2896,59.35439 95.3876,35.24 110.1677,-22.9916 0,-103.5362 -62.2687,0 0,66.2376 -47.899,7.2533 -30.1764,-15.1908 -11.6328,-31.7503 -2.1211,-48.49558 12.5221,-55.58227 42.3565,-22.78626 55.0839,2.94239 z"
@@ -2605,140 +2605,140 @@
        id="path4331"
        d="M 2392.25,-134.26355 2376,-117.2948 2493.7879,2.3097296 2525.1875,20.2677 2508.217,-11.89036 z"
        style="font-size:medium;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-indent:0;text-align:start;text-decoration:none;line-height:normal;letter-spacing:normal;word-spacing:normal;text-transform:none;direction:ltr;block-progression:tb;writing-mode:lr-tb;text-anchor:start;baseline-shift:baseline;color:#000000;fill:#502d16;fill-opacity:1;stroke:none;stroke-width:25;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate;font-family:Sans;-inkscape-font-specification:Sans"
-       inkscape:export-filename="C:\Users\Polaris\Documents\Repositories\Gamealition\Web\img\logo.png"
-       inkscape:export-xdpi="146.97449"
-       inkscape:export-ydpi="146.97449" />
+       inkscape:export-filename="C:\Users\Polaris\Documents\Repositories\Gamealition\Art\logo\neue-icon.png"
+       inkscape:export-xdpi="153.27339"
+       inkscape:export-ydpi="153.27339" />
     <path
        inkscape:connector-curvature="0"
        id="path4333"
        d="m 2288.8438,-47.01355 -5.6591,-29.83278 12.6591,29.83278 13.8437,58.1875 z"
        style="opacity:0.25;fill:#000000;stroke:none"
-       inkscape:export-filename="C:\Users\Polaris\Documents\Repositories\Gamealition\Web\img\logo.png"
-       inkscape:export-xdpi="146.97449"
-       inkscape:export-ydpi="146.97449" />
+       inkscape:export-filename="C:\Users\Polaris\Documents\Repositories\Gamealition\Art\logo\neue-icon.png"
+       inkscape:export-xdpi="153.27339"
+       inkscape:export-ydpi="153.27339" />
     <path
        inkscape:connector-curvature="0"
        id="path4335"
        d="m 2288.8438,-47.01355 -5.6591,-29.83278 -8.1317,-28.28427 -7.053,-0.0705 z"
        style="opacity:0.1;fill:#000000;stroke:none"
-       inkscape:export-filename="C:\Users\Polaris\Documents\Repositories\Gamealition\Web\img\logo.png"
-       inkscape:export-xdpi="146.97449"
-       inkscape:export-ydpi="146.97449" />
+       inkscape:export-filename="C:\Users\Polaris\Documents\Repositories\Gamealition\Art\logo\neue-icon.png"
+       inkscape:export-xdpi="153.27339"
+       inkscape:export-ydpi="153.27339" />
     <path
        inkscape:connector-curvature="0"
        id="path4337"
        d="m 2295.8438,-47.01355 -13.8438,-58.1875 -6.947,0.0705 8.1317,28.28427 z"
        style="opacity:0.25;fill:#ffffff;stroke:none"
-       inkscape:export-filename="C:\Users\Polaris\Documents\Repositories\Gamealition\Web\img\logo.png"
-       inkscape:export-xdpi="146.97449"
-       inkscape:export-ydpi="146.97449" />
+       inkscape:export-filename="C:\Users\Polaris\Documents\Repositories\Gamealition\Art\logo\neue-icon.png"
+       inkscape:export-xdpi="153.27339"
+       inkscape:export-ydpi="153.27339" />
     <path
        inkscape:connector-curvature="0"
        id="path4339"
        d="m 2442.2838,-244.43064 24.3541,7.71397 57.7996,7.14062 -55.4204,-13.07969 z"
        style="opacity:0.05;fill:#000000;stroke:none"
-       inkscape:export-filename="C:\Users\Polaris\Documents\Repositories\Gamealition\Web\img\logo.png"
-       inkscape:export-xdpi="146.97449"
-       inkscape:export-ydpi="146.97449" />
+       inkscape:export-filename="C:\Users\Polaris\Documents\Repositories\Gamealition\Art\logo\neue-icon.png"
+       inkscape:export-xdpi="153.27339"
+       inkscape:export-ydpi="153.27339" />
     <path
        inkscape:connector-curvature="0"
        id="path4341"
        d="m 2406.0625,-257.51355 1.2195,7.0725 35.0018,6.01041 26.7333,1.7749 z"
        style="opacity:0.9;fill:#ffffff;stroke:none"
-       inkscape:export-filename="C:\Users\Polaris\Documents\Repositories\Gamealition\Web\img\logo.png"
-       inkscape:export-xdpi="146.97449"
-       inkscape:export-ydpi="146.97449" />
+       inkscape:export-filename="C:\Users\Polaris\Documents\Repositories\Gamealition\Art\logo\neue-icon.png"
+       inkscape:export-xdpi="153.27339"
+       inkscape:export-ydpi="153.27339" />
     <path
        inkscape:connector-curvature="0"
        id="path4343"
        d="m 2408.8382,-243.8573 -1.5562,-6.58375 35.0018,6.01041 24.3541,7.71397 z"
        style="opacity:0.25;fill:#000000;stroke:none"
-       inkscape:export-filename="C:\Users\Polaris\Documents\Repositories\Gamealition\Web\img\logo.png"
-       inkscape:export-xdpi="146.97449"
-       inkscape:export-ydpi="146.97449" />
+       inkscape:export-filename="C:\Users\Polaris\Documents\Repositories\Gamealition\Art\logo\neue-icon.png"
+       inkscape:export-xdpi="153.27339"
+       inkscape:export-ydpi="153.27339" />
     <path
        inkscape:connector-curvature="0"
        id="path4345"
        d="m 2306.5193,-223.92454 -23.0818,-2.33901 122.625,-31.25 1.2195,7.0725 z"
        style="opacity:0.75;fill:#ffffff;stroke:none"
-       inkscape:export-filename="C:\Users\Polaris\Documents\Repositories\Gamealition\Web\img\logo.png"
-       inkscape:export-xdpi="146.97449"
-       inkscape:export-ydpi="146.97449" />
+       inkscape:export-filename="C:\Users\Polaris\Documents\Repositories\Gamealition\Art\logo\neue-icon.png"
+       inkscape:export-xdpi="153.27339"
+       inkscape:export-ydpi="153.27339" />
     <path
        inkscape:connector-curvature="0"
        id="path4347"
        d="m 2275.053,-105.1306 15.9099,-100.05561 -7.5254,-21.07734 L 2268,-105.2011 z"
        style="opacity:0.1;fill:#ffffff;stroke:none"
-       inkscape:export-filename="C:\Users\Polaris\Documents\Repositories\Gamealition\Web\img\logo.png"
-       inkscape:export-xdpi="146.97449"
-       inkscape:export-ydpi="146.97449" />
+       inkscape:export-filename="C:\Users\Polaris\Documents\Repositories\Gamealition\Art\logo\neue-icon.png"
+       inkscape:export-xdpi="153.27339"
+       inkscape:export-ydpi="153.27339" />
     <path
        sodipodi:nodetypes="ccccc"
        inkscape:connector-curvature="0"
        id="path4349"
        d="m 2275.053,-105.13055 6.947,-0.0705 24.9485,-102.47389 -15.9856,2.48873 z"
        style="opacity:0.1;fill:#000000;stroke:none"
-       inkscape:export-filename="C:\Users\Polaris\Documents\Repositories\Gamealition\Web\img\logo.png"
-       inkscape:export-xdpi="146.97449"
-       inkscape:export-ydpi="146.97449" />
+       inkscape:export-filename="C:\Users\Polaris\Documents\Repositories\Gamealition\Art\logo\neue-icon.png"
+       inkscape:export-xdpi="153.27339"
+       inkscape:export-ydpi="153.27339" />
     <path
        sodipodi:nodetypes="ccccc"
        inkscape:connector-curvature="0"
        id="path4351"
        d="m 2306.9485,-207.67494 -0.4292,-16.2496 100.7627,-26.51651 1.5562,6.58375 z"
        style="opacity:0.2;fill:#000000;stroke:none"
-       inkscape:export-filename="C:\Users\Polaris\Documents\Repositories\Gamealition\Web\img\logo.png"
-       inkscape:export-xdpi="146.97449"
-       inkscape:export-ydpi="146.97449" />
+       inkscape:export-filename="C:\Users\Polaris\Documents\Repositories\Gamealition\Art\logo\neue-icon.png"
+       inkscape:export-xdpi="153.27339"
+       inkscape:export-ydpi="153.27339" />
     <path
        sodipodi:nodetypes="ccccc"
        inkscape:connector-curvature="0"
        id="path4353"
        d="m 2290.9629,-205.18621 11.6673,-7.07107 3.8891,-11.66726 0.4292,16.2496 z"
        style="opacity:0.15;fill:#000000;stroke:none"
-       inkscape:export-filename="C:\Users\Polaris\Documents\Repositories\Gamealition\Web\img\logo.png"
-       inkscape:export-xdpi="146.97449"
-       inkscape:export-ydpi="146.97449" />
+       inkscape:export-filename="C:\Users\Polaris\Documents\Repositories\Gamealition\Art\logo\neue-icon.png"
+       inkscape:export-xdpi="153.27339"
+       inkscape:export-ydpi="153.27339" />
     <path
        inkscape:connector-curvature="0"
        id="path4355"
        d="m 2290.9629,-205.18621 -7.5254,-21.07734 23.0818,2.33901 -15.0193,3.53672 z"
        style="opacity:0.25;fill:#ffffff;stroke:none"
-       inkscape:export-filename="C:\Users\Polaris\Documents\Repositories\Gamealition\Web\img\logo.png"
-       inkscape:export-xdpi="146.97449"
-       inkscape:export-ydpi="146.97449" />
+       inkscape:export-filename="C:\Users\Polaris\Documents\Repositories\Gamealition\Art\logo\neue-icon.png"
+       inkscape:export-xdpi="153.27339"
+       inkscape:export-ydpi="153.27339" />
     <path
        inkscape:connector-curvature="0"
        id="path4357"
        d="M 2384.1252,-125.7792 2509.9646,4.5068496 2493.7879,2.3097296 2376,-117.2948 z"
        style="opacity:0.1;fill:#000000;stroke:none"
-       inkscape:export-filename="C:\Users\Polaris\Documents\Repositories\Gamealition\Web\img\logo.png"
-       inkscape:export-xdpi="146.97449"
-       inkscape:export-ydpi="146.97449" />
+       inkscape:export-filename="C:\Users\Polaris\Documents\Repositories\Gamealition\Art\logo\neue-icon.png"
+       inkscape:export-xdpi="153.27339"
+       inkscape:export-ydpi="153.27339" />
     <path
        inkscape:connector-curvature="0"
        id="path4359"
        d="m 2384.1252,-125.7792 8.1248,-8.48435 115.967,122.37319 1.7476,16.3972096 z"
        style="opacity:0.1;fill:url(#linearGradient4417);fill-opacity:1;stroke:none"
-       inkscape:export-filename="C:\Users\Polaris\Documents\Repositories\Gamealition\Web\img\logo.png"
-       inkscape:export-xdpi="146.97449"
-       inkscape:export-ydpi="146.97449" />
+       inkscape:export-filename="C:\Users\Polaris\Documents\Repositories\Gamealition\Art\logo\neue-icon.png"
+       inkscape:export-xdpi="153.27339"
+       inkscape:export-ydpi="153.27339" />
     <path
        inkscape:connector-curvature="0"
        id="path4361"
        d="m 2493.7879,2.3097296 16.1767,2.19712 15.2229,15.7608504 z"
        style="opacity:0.2;fill:#000000;stroke:none"
-       inkscape:export-filename="C:\Users\Polaris\Documents\Repositories\Gamealition\Web\img\logo.png"
-       inkscape:export-xdpi="146.97449"
-       inkscape:export-ydpi="146.97449" />
+       inkscape:export-filename="C:\Users\Polaris\Documents\Repositories\Gamealition\Art\logo\neue-icon.png"
+       inkscape:export-xdpi="153.27339"
+       inkscape:export-ydpi="153.27339" />
     <path
        inkscape:connector-curvature="0"
        id="path4363"
        d="M 2509.9646,4.5068496 2508.217,-11.89036 2525.1875,20.2677 z"
        style="opacity:0.05;fill:#ffffff;stroke:none"
-       inkscape:export-filename="C:\Users\Polaris\Documents\Repositories\Gamealition\Web\img\logo.png"
-       inkscape:export-xdpi="146.97449"
-       inkscape:export-ydpi="146.97449" />
+       inkscape:export-filename="C:\Users\Polaris\Documents\Repositories\Gamealition\Art\logo\neue-icon.png"
+       inkscape:export-xdpi="153.27339"
+       inkscape:export-ydpi="153.27339" />
     <g
        id="g4432"
        transform="translate(-196,386)"
