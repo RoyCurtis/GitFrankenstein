@@ -68,7 +68,6 @@ server {
         proxy_set_header Connection "keep-alive";
         proxy_store off;
         proxy_pass http://127.0.0.1:19999/$ndpath$is_args$args;
-        gzip_proxied any;
     }
 
     # Serve frontpage files
