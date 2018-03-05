@@ -4,7 +4,46 @@ var infoControl;
 /** Main entry point of AlphaMapper; called from index.html */
 function main()
 {
+    worldMap = L.map("map", {
+        center:  [0, 0],
+        zoom:    0,
+        maxZoom: 10
+    });
 
+    L.TileLayer.AlphaMapper = L.TileLayer.extend({
+        getTileUrl: function(coords)
+        {
+            if (coords.z < 6)
+                return "http://maptiles.imabot.com/alphaworld/upper/"
+                    + (coords.z) + "_"
+                    + (coords.x) + "_"
+                    + (coords.y) + ".png";
+            else
+            {
+                var workx = Math.floor( (coords.x) / Math.pow(2, coords.z - 6) );
+                var worky = Math.floor( (coords.y) / Math.pow(2, coords.z - 6) );
+                return "http://maptiles.imabot.com/alphaworld/"
+                    + workx + "_"
+                    + worky + "/"
+                    + coords.z + "_"
+                    + coords.x + "_"
+                    + coords.y + ".png";
+            }
+        },
+
+        getAttribution: function()
+        {
+            return "(C) 2009 <a href='http://www.imabot.com/'>ImaBot</a>, originally " +
+                "from <a href='http://www.imabot.com/alphamapper/'>AlphaMapper</a>"
+        }
+    });
+
+    L.tileLayer.alphaMapper = function()
+    {
+        return new L.TileLayer.AlphaMapper();
+    };
+
+    L.tileLayer.alphaMapper().addTo(worldMap);
 }
 
 //Marker handling functions
@@ -139,17 +178,7 @@ function parseLatLng(center)
 function getTileUrl(point, zoom)
 {
     // console.log(point, zoom);
-    if (zoom < 6)
-        return "http://maptiles.imabot.com/alphaworld/upper/" + (zoom) + "_" + (point.x) + "_" + (point.y) + ".png";
-    else
-    {
-        var workx = Math.floor( (point.x) / Math.pow(2, zoom - 6) );
-        var worky = Math.floor( (point.y) / Math.pow(2, zoom - 6) );
-        return "http://maptiles.imabot.com/alphaworld/"
-            + workx + "_"
-            + worky + "/"
-            + zoom + "_" + point.x + "_" + point.y + ((zoom > 11) ? ".jpg" : ".png");
-    }
+
 }
 
 function AlphaWorldMapType()
