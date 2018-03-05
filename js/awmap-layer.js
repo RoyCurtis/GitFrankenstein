@@ -1,10 +1,15 @@
 var AlphaWorldLayer = L.TileLayer.extend({
     options: {
-        errorTileUrl: "http://maptiles.imabot.com/alphaworld/blank.png",
+        // Restricts tile loading to 320x320 area (entire map at zoom 0)
+        bounds: L.latLngBounds(
+            L.latLng( -320, 0),
+            L.latLng(    0, 320)
+        ),
 
-        maxZoom:  10,
-        noWrap:   true,
-        tileSize: 320
+        errorTileUrl: "http://maptiles.imabot.com/alphaworld/blank.png",
+        maxZoom:      10,
+        noWrap:       true,
+        tileSize:     320
     },
 
     getTileUrl: function(coords)

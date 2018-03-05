@@ -7,15 +7,21 @@ var GLOBALS = {
 function main()
 {
     GLOBALS.worldMap = L.map("map", {
-        center: [0, 0],
-        zoom:   0,
-
+        // Restricts tile loading to 320x320 area (entire map at zoom 0)
         maxBounds: L.latLngBounds(
-            L.latLng(-1024, -1024),
-            L.latLng( 1024,  1024)
+            L.latLng( -320, 0),
+            L.latLng(    0, 320)
         ),
 
+        crs:    L.CRS.Simple,
+        center: [-160, 160],
+        zoom:   3,
         layers: [ new AlphaWorldLayer() ]
+    });
+
+    GLOBALS.worldMap.on('click', function(e)
+    {
+        console.log(e.latlng, e.layerPoint);
     });
 }
 
@@ -98,73 +104,9 @@ function parseLatLng(center)
         +  Math.floor( Math.abs(center.lng() * 1024) ) + (center.lng() >= 0 ? "W" : "E")
 }
 
-function getTileUrl(point, zoom)
-{
-    // console.log(point, zoom);
-
-}
-
-function AlphaWorldMapType()
-{
-    this.alt        = "AlphaWorld";
-    this.maxZoom    = 10;
-    this.minZoom    = 0;
-    this.name       = "AlphaWorld";
-    this.projection = new AWProjection(16, 320);
-    this.tileSize   = new google.maps.Size(320, 320);
-}
-
-AlphaWorldMapType.prototype.getTile = function(tileCoord, zoom, ownerDocument)
-{
-    var img = ownerDocument.createElement('img');
-
-    img.src     = getTileUrl(tileCoord, zoom);
-    img.width   = this.tileSize.width;
-    img.height  = this.tileSize.height;
-    img.onerror = function()
-    {
-        img.src = "http://maptiles.imabot.com/alphaworld/blank.png";
-    };
-
-    return img;
-};
-
-AlphaWorldMapType.prototype.releaseTile = function(node)
-{
-    node.onerror = null;
-    node.remove();
-};
-
 //Handles the page being loaded.
 function load()
 {
-    // ====== Create the MapType ==============
-    var customMap = new AlphaWorldMapType();
-
-    // === create the map ===
-    worldMap = new google.maps.Map( document.getElementById("map") );
-
-    // === add the new maptype to it ===
-    // This feels dumb but it's the only way to get zoom information...
-    customMap.projection.attachMap(worldMap);
-    worldMap.mapTypes.set("ALPHAWORLD", customMap);
-    worldMap.setOptions({
-        gestureHandling : "greedy",
-        disableDoubleClickZoom : true,
-        streetViewControl: false,
-        panControl: true,
-        panControlOptions: {
-            position: google.maps.ControlPosition.BOTTOM_RIGHT
-        },
-        mapTypeId : "ALPHAWORLD",
-        mapTypeControl : false
-    });
-
-    // === set some properties ===
-
-    infoControl = new InformationControl(worldMap);
-    worldMap.controls[google.maps.ControlPosition.TOP_LEFT].push(infoControl.div);
-
     // Parses the query string as needed.
     var qsParm = [];
     function qs()
@@ -186,16 +128,4 @@ function load()
     qsParm['location'] = "";
     qsParm['zoom']     = 0;
     qs();
-
-    worldMap.setCenter( parseLocation(qsParm['location']) );
-    worldMap.setZoom( parseInt(qsParm['zoom']) );
-
-    document.getElementById("map").style.height = document.body.offsetHeight-51 + "px";
-    google.maps.event.trigger(worldMap, 'resize');
-
-    google.maps.event.addDomListener(window, "resize", function()
-    {
-        document.getElementById("map").style.height = document.body.offsetHeight-51 + "px";
-        google.maps.event.trigger(worldMap, 'resize');
-    });
 }
