@@ -66,7 +66,34 @@ html, body
 
 #linkHere
 {
+    top:   25px;
+    right: 10px;
+
     position: absolute;
-    top:      25px;
-    right:    10px;
+}
+
+#infoControl
+{
+    width: 160px;
+
+    background-color: white;
+    background-clip:  padding-box;
+    font-size:        small;
+    line-height:      normal;
+    border-radius:    4px;
+    padding:          4px;
+    border:           2px solid rgba(0, 0, 0, 0.2);
+}
+
+#infoControl > label
+{
+    display:        block;
+    text-transform: uppercase;
+    font-size:      smaller;
+    margin-bottom:  2px;
+}
+
+#infoControl > value
+{
+    font-size: large;
 }

@@ -5,15 +5,14 @@
  * License unknown.
  */
 
-var GLOBALS = {
-    /** @type L.Map */
-    worldMap : null
-};
-
 /** Main entry point of AlphaMapper; called from index.html */
 function main()
 {
-    GLOBALS.worldMap = L.map("map", {
+    // Helpful references:
+    // http://leafletjs.com/examples/crs-simple/crs-simple.html
+    // http://leafletjs.com/examples/extending/extending-2-layers.html
+
+    var worldMap = L.map("map", {
         // Restricts panning and zooming to 350x350 area; entire map at zoom 0 but with
         // some padding, so that it's less annoying to get to edges or corners
         maxBounds: L.latLngBounds(
@@ -25,15 +24,14 @@ function main()
         inertiaDeceleration: 1500,
 
         center: [-160, 160],
-        zoom:   3,
-        layers: [ new AlphaWorldLayer() ]
         crs:    L.CRS.Simple,
+        layers: [ new AWLayer() ],
+        zoom:   3
     });
 
-    GLOBALS.worldMap.on('click', function(e)
-    {
-        console.log(e.latlng, e.layerPoint);
-    });
+    worldMap.addControl(new AWInfoControl({
+        position: 'topright'
+    }));
 }
 
 

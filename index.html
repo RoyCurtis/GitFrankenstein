@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, user-scalable=no">
+
     <title>AlphaMapper - AlphaWorld</title>
 
     <link href="css/leaflet.css" rel="stylesheet" type="text/css"/>
@@ -25,14 +29,20 @@
     </header>
 
     <div id="map"></div>
+
+    <!-- Template for the Information control -->
+    <div id="infoControl">
+      <label>Pointer location</label>
+      <value>0E 0W</value>
+    </div>
   </body>
 
   <scripts>
     <script src="js/leaflet/leaflet-src.js" type="text/javascript"></script>
 
+    <script src="js/awmap-coordinates.js" type="text/javascript"></script>
     <script src="js/awmap-infocontrol.js" type="text/javascript"></script>
     <script src="js/awmap-layer.js"       type="text/javascript"></script>
-    <script src="js/awmap-projection.js"  type="text/javascript"></script>
     <script src="js/awmap.js"             type="text/javascript"></script>
   </scripts>
 </html>
