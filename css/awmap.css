@@ -1,0 +1,72 @@
+html, body
+{
+    height: 100%;
+    width:  100%;
+}
+
+*
+{
+    margin:     0;
+    padding:    0;
+    box-sizing: border-box;
+}
+
+#map
+{
+    top:    50px;
+    left:   0;
+    right:  0;
+    bottom: 0;
+    width:  100%;
+
+    position:   absolute;
+    border-top: 1px solid;
+    background: black
+}
+
+#hint
+{
+    top:  5px;
+    left: 15px;
+
+    position:  absolute;
+    color:     #AAAAAA;
+    font-size: 8pt;
+}
+
+#coordForm
+{
+    top:  20px;
+    left: 10px;
+
+    position: absolute;
+}
+
+#coordForm > input
+{
+    height: 18px;
+    width:  200px;
+
+    border:     1px solid black;
+    background: white;
+}
+
+#coordForm > button
+{
+    height: 23px;
+}
+
+#toolbar
+{
+    top:   5px;
+    right: 10px;
+
+    position: absolute;
+}
+
+#linkHere
+{
+    position: absolute;
+    top:      25px;
+    right:    10px;
+}
