@@ -14,10 +14,11 @@ var GLOBALS = {
 function main()
 {
     GLOBALS.worldMap = L.map("map", {
-        // Restricts tile loading to 320x320 area (entire map at zoom 0)
+        // Restricts panning and zooming to 350x350 area; entire map at zoom 0 but with
+        // some padding, so that it's less annoying to get to edges or corners
         maxBounds: L.latLngBounds(
-            L.latLng( -320, 0),
-            L.latLng(    0, 320)
+            L.latLng( -330, 0),
+            L.latLng(    0, 330)
         ),
 
         crs:    L.CRS.Simple,
