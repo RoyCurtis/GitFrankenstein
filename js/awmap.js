@@ -5,12 +5,23 @@ var infoControl;
 function main()
 {
     worldMap = L.map("map", {
-        center:  [0, 0],
-        zoom:    0,
-        maxZoom: 10
+        center: [0, 0],
+        zoom:   0,
+        maxBounds: L.latLngBounds(
+            L.latLng(-1024, -1024),
+            L.latLng( 1024,  1024)
+        )
     });
 
     L.TileLayer.AlphaMapper = L.TileLayer.extend({
+        options: {
+            errorTileUrl: "http://maptiles.imabot.com/alphaworld/blank.png",
+
+            maxZoom:  10,
+            noWrap:   true,
+            tileSize: 320
+        },
+
         getTileUrl: function(coords)
         {
             if (coords.z < 6)
@@ -38,12 +49,7 @@ function main()
         }
     });
 
-    L.tileLayer.alphaMapper = function()
-    {
-        return new L.TileLayer.AlphaMapper();
-    };
-
-    L.tileLayer.alphaMapper().addTo(worldMap);
+    new L.TileLayer.AlphaMapper().addTo(worldMap);
 }
 
 //Marker handling functions
