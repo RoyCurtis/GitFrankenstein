@@ -39,8 +39,14 @@ function setupMap()
         zoom:   DEFAULT_ZOOM
     });
 
+    // Add the information (coordinates) control
     worldMap.addControl(new AWInfoControl({
         position: 'topright'
+    }));
+
+    // Add the teleport button control
+    worldMap.addControl(new AWTeleportControl({
+        position: 'topleft'
     }));
 
     // Update URL when moving the map
@@ -55,12 +61,4 @@ function setupMap()
             "?location=" + latLng2PrettyCoords(center, '_') + "&zoom=" + zoom
         );
     });
-}
-
-// Handles the user clicking the "Teleport here" link.
-function teleportHere()
-{
-    var center = worldMap.getCenter();
-    var linkURL = "http://objects.activeworlds.com/cgi-bin/teleport.cgi?aw_" + parseLatLng(center);
-    window.location = linkURL;
 }

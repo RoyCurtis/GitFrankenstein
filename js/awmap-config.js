@@ -16,3 +16,9 @@ var MAX_ZOOM = 10;
  * @const
  */
 var DEFAULT_ZOOM = 3;
+
+/**
+ * URL for Active Worlds' teleport CGI script
+ * @const
+ */
+var TELEPORT_CGI = "http://objects.activeworlds.com/cgi-bin/teleport.cgi?aw_";

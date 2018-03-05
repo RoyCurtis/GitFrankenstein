@@ -19,21 +19,28 @@
 
     <div id="map"></div>
 
-    <!-- Template for the Information control -->
+    <!-- Template for the information control -->
     <div id="infoControl">
       <label>Pointer location</label>
       <value>0N 0W</value>
     </div>
+
+    <!-- Template for the teleport control -->
+    <button id="teleportControl"
+            title="Teleport to map's current center coordinates in Active Worlds">
+      🌐
+    </button>
   </body>
 
   <scripts>
     <script src="js/leaflet/leaflet-src.js" type="text/javascript"></script>
 
-    <script src="js/awmap-config.js"      type="text/javascript"></script>
-    <script src="js/awmap-coordinates.js" type="text/javascript"></script>
-    <script src="js/awmap-infocontrol.js" type="text/javascript"></script>
-    <script src="js/awmap-layer.js"       type="text/javascript"></script>
-    <script src="js/awmap-navbox.js"      type="text/javascript"></script>
-    <script src="js/awmap.js"             type="text/javascript"></script>
+    <script src="js/awmap-config.js"          type="text/javascript"></script>
+    <script src="js/awmap-coordinates.js"     type="text/javascript"></script>
+    <script src="js/awmap-infocontrol.js"     type="text/javascript"></script>
+    <script src="js/awmap-layer.js"           type="text/javascript"></script>
+    <script src="js/awmap-navbox.js"          type="text/javascript"></script>
+    <script src="js/awmap-teleportcontrol.js" type="text/javascript"></script>
+    <script src="js/awmap.js"                 type="text/javascript"></script>
   </scripts>
 </html>
