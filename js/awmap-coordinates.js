@@ -51,12 +51,15 @@ function latLng2Coords(latlng)
 {
     // First, convert the lat/longs to something more sane
     // Makes it so lat/lng 0/0 is ground zero and south-east is positive
-    var lat = Math.abs(latlng.lat) - 160;
+    var lat = latlng.lat + 160;
     var lng = latlng.lng - 160;
 
     // Scale the lat/longs and round them
     lat = Math.round(lat * LATLNG2COORDS);
     lng = Math.round(lng * LATLNG2COORDS);
+
+    // Flip latitude's polarity
+    lat *= -1;
 
     // Finally, clamp them so they don't go beyond AW's limits
     lat = Math.min(Math.max(lat, -32767), 32767);
@@ -90,22 +93,15 @@ function latLng2PrettyCoords(latlng, delimiter)
  */
 function coords2LatLng(coords)
 {
-    // First, convert the lat/longs to something more sane
-    // Makes it so lat/lng 0/0 is ground zero and south-east is positive
-    // var lat = Math.abs(latlng.lat) - 160;
-    // var lng = latlng.lng - 160;
-
-// * Conversion notes:
-// * Latitude goes from 0 to -320 from north to south
-// * Longitude goes from 0 to 320 from west to east
-
     // First, scale the coordinates back to lat/longs
     var lat = coords[0] / LATLNG2COORDS;
     var lng = coords[1] / LATLNG2COORDS;
 
-    // Finally, offset values back to lat/long ranges
-    lat += 160;
+    // Flip latitude's polarity back
     lat *= -1;
+
+    // Finally, offset values back to lat/long ranges
+    lat -= 160;
     lng += 160;
 
     return L.latLng(lat, lng);
