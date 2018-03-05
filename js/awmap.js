@@ -1,6 +1,12 @@
 var worldMap;
 var infoControl;
 
+/** Main entry point of AlphaMapper; called from index.html */
+function main()
+{
+
+}
+
 //Marker handling functions
 //This places the final marker on the map.
 function createMarker(loc, dom)
