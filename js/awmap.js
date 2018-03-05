@@ -52,15 +52,9 @@ function setupMap()
     // http://leafletjs.com/examples/crs-simple/crs-simple.html
     // http://leafletjs.com/examples/extending/extending-2-layers.html
     var worldMap = L.map("map", {
-        // Restricts panning and zooming to 350x350 area; entire map at zoom 0 but with
-        // some padding, so that it's less annoying to get to edges or corners
-        maxBounds: L.latLngBounds(
-            L.latLng( -330, -10),
-            L.latLng(   10, 330)
-        ),
 
         // Make dragging on touch devices a little looser
-        inertiaDeceleration: 1500,
+        inertiaDeceleration: 2000,
 
         center: [-160, 160],
         crs:    L.CRS.Simple,
