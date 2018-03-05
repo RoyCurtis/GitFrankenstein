@@ -14,6 +14,11 @@ var worldMap;
 /** Main entry point of AlphaMapper; called from index.html */
 function main()
 {
+    if (location.protocol === 'https:')
+        alert("Warning: Loading this page as HTTPS may prevent map tiles from loading, " +
+            "as they are served via HTTP only. Try changing the 'https' to 'http' " +
+            "if you encounter problems.");
+
     setupMap();
     setupNavBox();
 
