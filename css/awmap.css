@@ -23,7 +23,7 @@ body
 
 #navBar
 {
-    height: 8vh;
+    height: 40px;
 }
 
 #navBar > input
@@ -33,7 +33,7 @@ body
 
     border:     none;
     font-size:  xx-large;
-    padding:    1vh;
+    padding:    5px;
     text-align: center;
 }
 
