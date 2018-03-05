@@ -1,3 +1,10 @@
+/**
+ * AlphaMapper - Entry point and glue code for everythng.
+ *
+ * Code originally by Byte and Ima Genius. Updated to Leaflet.js by Roy Curtis.
+ * License unknown.
+ */
+
 var GLOBALS = {
     /** @type L.Map */
     worldMap : null

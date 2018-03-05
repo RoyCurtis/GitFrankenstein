@@ -1,4 +1,10 @@
-//Control for displaying position and other information on the map.
+/**
+ * AlphaMapper - Custom Leaflet control for displaying coordinates
+ *
+ * Code originally by Byte and Ima Genius. Updated to Leaflet.js by Roy Curtis.
+ * License unknown.
+ */
+
 function InformationControl(map)
 {
     var container  = document.createElement("div");

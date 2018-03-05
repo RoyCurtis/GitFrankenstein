@@ -1,3 +1,10 @@
+/**
+ * AlphaMapper - Custom TileLayer class for loading AlphaMapper tiles
+ *
+ * Code originally by Byte and Ima Genius. Updated to Leaflet.js by Roy Curtis.
+ * License unknown.
+ */
+
 var AlphaWorldLayer = L.TileLayer.extend({
     options: {
         // Restricts tile loading to 320x320 area (entire map at zoom 0)
