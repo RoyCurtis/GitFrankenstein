@@ -15,8 +15,8 @@ var worldMap;
 /** Main entry point of AlphaMapper; called from index.html */
 function main()
 {
-    setupNavBox();
     setupMap();
+    setupNavBox();
 }
 
 /** Sets up the top navigational box */
@@ -53,6 +53,11 @@ function setupNavBox()
         else
             navInput.setCustomValidity('');
     };
+
+    worldMap.on('moveend', function(e)
+    {
+        navInput.placeholder = latLng2PrettyCoords( worldMap.getCenter() );
+    });
 }
 
 /** Sets up the Leaflet.js map */
@@ -74,6 +79,19 @@ function setupMap()
     worldMap.addControl(new AWInfoControl({
         position: 'topright'
     }));
+
+    // Update URL when moving the map
+    worldMap.on('moveend', function(e)
+    {
+        var center = worldMap.getCenter();
+        var zoom   = worldMap.getZoom();
+
+        history.replaceState(
+            center,
+            "AWMapper",
+            "?location=" + latLng2PrettyCoords(center, '_') + "&zoom=" + zoom
+        );
+    });
 }
 
 
@@ -104,26 +122,6 @@ function gotoLocation()
     worldMap.savePosition();
 }
 
-//Takes an AW style coordinate and returns the corresponding GLatLng
-function parseLocation(inputLocation)
-{
-    var nsCoord = inputLocation.match("[0-9]*[.]?[0-9]*[NnSs]");
-    var ewCoord = inputLocation.match("[0-9]*[.]?[0-9]*[EeWw]");
-
-    var lat, lng;
-    if(nsCoord != null && ewCoord != null)
-    {
-        lat = parseFloat(nsCoord) * (inputLocation.match("[Nn]") != null ? 1 : -1);
-        lng = parseFloat(ewCoord) * (inputLocation.match("[Ww]") != null ? 1 : -1);
-    }
-    else
-    {
-        lat = 0;
-        lng = 0;
-    }
-
-    return new google.maps.LatLng(lat/1024, lng/1024);
-}
 
 function parseLatLng(center)
 {

@@ -69,13 +69,17 @@ function latLng2Coords(latlng)
  * Converts a given latitude and longitude to a pretty-formatted AW coordinate string.
  *
  * @param {L.LatLng} latlng
+ * @param {string= } delimiter
  * @returns {string}
  */
-function latLng2PrettyCoords(latlng)
+function latLng2PrettyCoords(latlng, delimiter)
 {
+    if (delimiter === undefined)
+        delimiter = ' ';
+
     var coords = latLng2Coords(latlng);
 
-    return coords2PrettyCoords(coords);
+    return coords2PrettyCoords(coords, delimiter);
 }
 
 /**
@@ -111,12 +115,16 @@ function coords2LatLng(coords)
  * Converts the given coords into a human (and AW) readable string
  *
  * @param {AWCoords} coords
+ * @param {string= } delimiter
  * @returns {string}
  */
-function coords2PrettyCoords(coords)
+function coords2PrettyCoords(coords, delimiter)
 {
+    if (delimiter === undefined)
+        delimiter = ' ';
+
     return "" +
-        Math.abs(coords[0]) + (coords[0] < 0 ? "N" : "S") + " " +
+        Math.abs(coords[0]) + (coords[0] < 0 ? "N" : "S") + delimiter +
         Math.abs(coords[1]) + (coords[1] < 0 ? "W" : "E");
 }
 
