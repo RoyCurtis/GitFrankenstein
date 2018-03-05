@@ -125,24 +125,68 @@ function coords2PrettyCoords(coords, delimiter)
 }
 
 /**
- * Parses a given string into coordinates
+ * Parses a given string into coordinates. Invalid strings will return zero'd coordinates
+ * where appropriate.
  *
  * @param {string} str
  * @return {AWCoords}
  */
 function parseCoords(str)
 {
-    var matches = str.trim().match(REGEX_COORDS);
+    var matches = str.trim().match(REGEX_COORDS) || [];
 
     // Using parseInt to discard decimal numbers; don't need them
-    var lat = parseInt(matches[1]);
+    var lat = matches[1] ? parseInt(matches[1]) : 0;
     var lng = matches[3] ? parseInt(matches[3]) : 0;
 
-    if (matches[2].toLowerCase() === 'n')
+    if (matches[2] && matches[2].toLowerCase() === 'n')
         lat *= -1;
 
     if (matches[4] && matches[4].toLowerCase() === 'w')
         lng *= -1;
 
     return [lat, lng];
+}
+
+/** Parses the current URL's query string to coordinates and zoom */
+function query2CoordsAndZoom()
+{
+    var result = {
+        location: [0, 0],
+        zoom:     DEFAULT_ZOOM
+    };
+
+    var query = window.location.search.substring(1);
+    var parms = query.split('&');
+
+    for (var i = 0; i < parms.length; i++)
+    {
+        var pos = parms[i].indexOf('=');
+
+        if (pos <= 0)
+            continue;
+
+        var key   = parms[i].substring(0, pos).toLowerCase();
+        var value = parms[i].substring(pos + 1);
+
+        switch (key)
+        {
+            case "location":
+                value = value.replace('_', ' ');
+                result.location = parseCoords(value);
+                break;
+
+            case "zoom":
+                var zoom = parseInt(value);
+
+                if ( !isNaN(zoom) && zoom >= 0 && zoom <= MAX_ZOOM )
+                    result.zoom = zoom;
+                else
+                    console.warn("Not a valid zoom:", value);
+
+                break;
+        }
+    }
+
+    return result;
 }

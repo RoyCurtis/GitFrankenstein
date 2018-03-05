@@ -15,7 +15,7 @@ var AWLayer = L.TileLayer.extend({
         ),
 
         errorTileUrl: "http://maptiles.imabot.com/alphaworld/blank.png",
-        maxZoom:      10,
+        maxZoom:      MAX_ZOOM,
         noWrap:       true,
         tileSize:     320
     },
