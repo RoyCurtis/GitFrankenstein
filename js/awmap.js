@@ -55,8 +55,8 @@ function setupMap()
         // Restricts panning and zooming to 350x350 area; entire map at zoom 0 but with
         // some padding, so that it's less annoying to get to edges or corners
         maxBounds: L.latLngBounds(
-            L.latLng( -330, 0),
-            L.latLng(    0, 330)
+            L.latLng( -330, -10),
+            L.latLng(   10, 330)
         ),
 
         // Make dragging on touch devices a little looser
