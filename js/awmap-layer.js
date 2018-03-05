@@ -31,6 +31,7 @@ var AWLayer = L.TileLayer.extend({
         {
             var workx = Math.floor( (coords.x) / Math.pow(2, coords.z - 6) );
             var worky = Math.floor( (coords.y) / Math.pow(2, coords.z - 6) );
+
             return "http://maptiles.imabot.com/alphaworld/"
                 + workx + "_"
                 + worky + "/"

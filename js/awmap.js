@@ -11,10 +11,46 @@
 /** Main entry point of AlphaMapper; called from index.html */
 function main()
 {
+    setupNavBox();
+    setupMap();
+}
+
+/** Sets up the top navigational box */
+function setupNavBox()
+{
+    var navBar   = document.querySelector("#navBar");
+    var navInput = navBar.querySelector("input");
+
+    navBar.onsubmit = function(e)
+    {
+        var coords = parseCoords(navInput.value);
+        var pretty = coords2PrettyCoords(coords);
+        console.log(coords);
+
+        navInput.value = pretty;
+
+        e.preventDefault();
+        return false;
+    };
+
+    navInput.oninput = function(e)
+    {
+        if (navInput.validity.patternMismatch)
+            navInput.setCustomValidity(
+                'Coordinates must be in one of these formats: ' +
+                '"1000N -1000E", "200N", "-1200s666E", etc.'
+            );
+        else
+            navInput.setCustomValidity('');
+    };
+}
+
+/** Sets up the Leaflet.js map */
+function setupMap()
+{
     // Helpful references:
     // http://leafletjs.com/examples/crs-simple/crs-simple.html
     // http://leafletjs.com/examples/extending/extending-2-layers.html
-
     var worldMap = L.map("map", {
         // Restricts panning and zooming to 350x350 area; entire map at zoom 0 but with
         // some padding, so that it's less annoying to get to edges or corners
@@ -35,53 +71,8 @@ function main()
     worldMap.addControl(new AWInfoControl({
         position: 'topright'
     }));
-
-    var navBar   = document.querySelector("#navBar");
-    var navInput = navBar.querySelector("input");
-
-    navBar.onsubmit = function(e)
-    {
-        console.log(e);
-        e.preventDefault();
-        return false;
-    };
-
-    navInput.oninput = function(e)
-    {
-        if (navInput.validity.patternMismatch)
-            navInput.setCustomValidity(
-                'Coordinates must be in one of these formats: ' +
-                '"1000N -1000E", "200N", "-1200s666E", etc.'
-            );
-        else
-            navInput.setCustomValidity('');
-    };
 }
 
-
-// General event handlers
-// Handles the user pressing enter while searching coordinates.
-function handleEnter(event)
-{
-    var keyCode = null;
-
-    if(event.which)
-    {
-        keyCode = event.which;
-    }
-    else if(event.keyCode)
-    {
-        keyCode = event.keyCode;
-    }
-
-    if (keyCode === 13)
-    {
-        document.getElementById("gotoBtn").click();
-        return false;
-    }
-
-    return true;
-}
 
 // Handles the user clicking the "Link here" link.
 function linkHere()

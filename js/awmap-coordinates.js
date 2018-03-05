@@ -15,6 +15,18 @@
  */
 
 /**
+ * Regex pattern for matching coordinate strings, where:
+ *
+ * • Group 1 is numerical value of latitude
+ * • Group 2 is north/south indicator
+ * • Group 3 is numerical value of longitude
+ * • Group 4 is west/east indicator
+ *
+ * @type {RegExp}
+ */
+var REGEX_COORDS = /^(\d{1,5}(?:\.\d{1,5})?)([NS])\s*(?:(\d{1,5}(?:\.\d{1,5})?)([WE]))?$/mi;
+
+/**
  * Converts a given latitude and longitude to Active Worlds coordinates.
  *
  * Conversion notes:
@@ -57,7 +69,41 @@ function latLng2PrettyCoords(latlng)
 {
     var coords = latLng2Coords(latlng);
 
+    return coords2PrettyCoords(coords);
+}
+
+/**
+ * Converts the given coords into a human (and AW) readable string
+ *
+ * @param {AWCoords} coords
+ * @returns {string}
+ */
+function coords2PrettyCoords(coords)
+{
     return "" +
         Math.abs(coords[0]) + (coords[0] < 0 ? "N" : "S") + " " +
         Math.abs(coords[1]) + (coords[1] < 0 ? "W" : "E");
+}
+
+/**
+ * Parses a given string into coordinates
+ *
+ * @param {string} str
+ * @return {AWCoords}
+ */
+function parseCoords(str)
+{
+    var matches = str.trim().match(REGEX_COORDS);
+
+    // Using parseInt to discard decimal numbers; don't need them
+    var lat = parseInt(matches[1]);
+    var lng = matches[3] ? parseInt(matches[3]) : 0;
+
+    if (matches[2].toLowerCase() === 'n')
+        lat *= -1;
+
+    if (matches[4] && matches[4].toLowerCase() === 'w')
+        lng *= -1;
+
+    return [lat, lng];
 }
