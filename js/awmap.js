@@ -21,10 +21,13 @@ function main()
             L.latLng(    0, 330)
         ),
 
-        crs:    L.CRS.Simple,
+        // Make dragging on touch devices a little looser
+        inertiaDeceleration: 1500,
+
         center: [-160, 160],
         zoom:   3,
         layers: [ new AlphaWorldLayer() ]
+        crs:    L.CRS.Simple,
     });
 
     GLOBALS.worldMap.on('click', function(e)
