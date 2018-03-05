@@ -9,7 +9,7 @@
  * Maximum zoom supported by AWMapper
  * @const
  */
-var MAX_ZOOM = 10;
+var MAX_ZOOM = 12;
 
 /**
  * Default zoom level

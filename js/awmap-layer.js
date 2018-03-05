@@ -5,7 +5,7 @@
  * License unknown.
  */
 
-var AWLayer = L.TileLayer.extend({
+var AWLayer = FallbackTileLayer.extend({
 
     options: {
         // Restricts tile loading to 320x320 area (entire map at zoom 0)
