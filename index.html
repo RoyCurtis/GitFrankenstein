@@ -12,28 +12,17 @@
   </head>
 
   <body onload="main()">
-    <header>
-      <span id="hint">e.g., "200n 63e"</span>
-
-      <span id="coordForm">
-        <input id="inputLocation" type="text"/>
-
-        <button id="gotoBtn">Go To</button>
-      </span>
-
-      <span id="toolbar">
-        <a>Link to Location</a> - <a>Teleport to Location</a>
-      </span>
-
-      <a id="linkHere"></a>
-    </header>
+    <form id="navBar">
+      <input type="text" placeholder="1000N 1000E"
+             pattern="-?\d+[NSns]\s*(-?\d+[WEwe])?"/>
+    </form>
 
     <div id="map"></div>
 
     <!-- Template for the Information control -->
     <div id="infoControl">
       <label>Pointer location</label>
-      <value>0E 0W</value>
+      <value>0N 0W</value>
     </div>
   </body>
 

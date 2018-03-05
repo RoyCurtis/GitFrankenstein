@@ -26,5 +26,5 @@ var AWInfoControl = L.Control.extend({
 
         return controlDom;
     }
-    
+
 });

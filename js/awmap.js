@@ -5,6 +5,9 @@
  * License unknown.
  */
 
+// TODO:
+// Use the leaflet plugin for scaled missing tiless
+
 /** Main entry point of AlphaMapper; called from index.html */
 function main()
 {
@@ -32,6 +35,27 @@ function main()
     worldMap.addControl(new AWInfoControl({
         position: 'topright'
     }));
+
+    var navBar   = document.querySelector("#navBar");
+    var navInput = navBar.querySelector("input");
+
+    navBar.onsubmit = function(e)
+    {
+        console.log(e);
+        e.preventDefault();
+        return false;
+    };
+
+    navInput.oninput = function(e)
+    {
+        if (navInput.validity.patternMismatch)
+            navInput.setCustomValidity(
+                'Coordinates must be in one of these formats: ' +
+                '"1000N -1000E", "200N", "-1200s666E", etc.'
+            );
+        else
+            navInput.setCustomValidity('');
+    };
 }
 
 
