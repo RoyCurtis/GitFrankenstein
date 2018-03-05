@@ -16,12 +16,12 @@ var AWInfoControl = L.Control.extend({
 
         map.on('mousemove', function(e)
         {
-            valueDom.innerText = AWCoords.fromLatLngPretty(e.latlng);
+            valueDom.innerText = latLng2PrettyCoords(e.latlng);
         });
 
         map.on('click', function(e)
         {
-            valueDom.innerText = AWCoords.fromLatLngPretty(e.latlng);
+            valueDom.innerText = latLng2PrettyCoords(e.latlng);
         });
 
         return controlDom;

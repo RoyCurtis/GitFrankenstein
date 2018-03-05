@@ -5,16 +5,13 @@
  * License unknown.
  */
 
-/** Namespace for coordinate-related utility functions */
-var AWCoords = {};
-
 /**
  * A tuple, representing Active Worlds coordinates, where:
  *
  * • Index 0 is latitude (north-south), where south is positive
  * • Index 1 is longitude (west-east), where east is positive
  *
- * @typedef {number[]} AWCoord
+ * @typedef {number[]} AWCoords
  */
 
 /**
@@ -25,9 +22,9 @@ var AWCoords = {};
  * Longitude goes from 0 to 320 from west to east
  *
  * @param {L.LatLng} latlng
- * @returns {AWCoord}
+ * @returns {AWCoords}
  */
-AWCoords.fromLatLng = function(latlng)
+function latLng2Coords(latlng)
 {
     // First, convert the lat/longs to something more sane
     // Makes it so lat/lng 0/0 is ground zero and south-east is positive
@@ -48,7 +45,7 @@ AWCoords.fromLatLng = function(latlng)
     lng = Math.min(Math.max(lng, -32767), 32767);
 
     return [lat, lng];
-};
+}
 
 /**
  * Converts a given latitude and longitude to a pretty-formatted AW coordinate string.
@@ -56,11 +53,11 @@ AWCoords.fromLatLng = function(latlng)
  * @param {L.LatLng} latlng
  * @returns {string}
  */
-AWCoords.fromLatLngPretty = function(latlng)
+function latLng2PrettyCoords(latlng)
 {
-    var coords = AWCoords.fromLatLng(latlng);
+    var coords = latLng2Coords(latlng);
 
     return "" +
         Math.abs(coords[0]) + (coords[0] < 0 ? "N" : "S") + " " +
         Math.abs(coords[1]) + (coords[1] < 0 ? "W" : "E");
-};
+}
