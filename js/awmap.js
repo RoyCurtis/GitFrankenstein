@@ -1,107 +1,24 @@
-var worldMap;
-var infoControl;
+var GLOBALS = {
+    /** @type L.Map */
+    worldMap : null
+};
 
 /** Main entry point of AlphaMapper; called from index.html */
 function main()
 {
-    worldMap = L.map("map", {
+    GLOBALS.worldMap = L.map("map", {
         center: [0, 0],
         zoom:   0,
+
         maxBounds: L.latLngBounds(
             L.latLng(-1024, -1024),
             L.latLng( 1024,  1024)
-        )
+        ),
+
+        layers: [ new AlphaWorldLayer() ]
     });
-
-    L.TileLayer.AlphaMapper = L.TileLayer.extend({
-        options: {
-            errorTileUrl: "http://maptiles.imabot.com/alphaworld/blank.png",
-
-            maxZoom:  10,
-            noWrap:   true,
-            tileSize: 320
-        },
-
-        getTileUrl: function(coords)
-        {
-            if (coords.z < 6)
-                return "http://maptiles.imabot.com/alphaworld/upper/"
-                    + (coords.z) + "_"
-                    + (coords.x) + "_"
-                    + (coords.y) + ".png";
-            else
-            {
-                var workx = Math.floor( (coords.x) / Math.pow(2, coords.z - 6) );
-                var worky = Math.floor( (coords.y) / Math.pow(2, coords.z - 6) );
-                return "http://maptiles.imabot.com/alphaworld/"
-                    + workx + "_"
-                    + worky + "/"
-                    + coords.z + "_"
-                    + coords.x + "_"
-                    + coords.y + ".png";
-            }
-        },
-
-        getAttribution: function()
-        {
-            return "(C) 2009 <a href='http://www.imabot.com/'>ImaBot</a>, originally " +
-                "from <a href='http://www.imabot.com/alphamapper/'>AlphaMapper</a>"
-        }
-    });
-
-    new L.TileLayer.AlphaMapper().addTo(worldMap);
 }
 
-//Marker handling functions
-//This places the final marker on the map.
-function createMarker(loc, dom)
-{
-    var marker = new GMarker(loc);
-    GEvent.addListener(marker, "click", function()
-    {
-        marker.openInfoWindow(dom);
-    });
-
-    return marker;
-}
-
-function markPOI(title, description, location, image)
-{
-    var displayDiv = document.createElement("div");
-    displayDiv.style.width = "400px";
-
-    var titleDiv = document.createElement("div");
-    titleDiv.innerHTML = title;
-    titleDiv.style.fontWeight = "bold";
-    displayDiv.appendChild(titleDiv);
-
-    var contentDiv = document.createElement("div");
-
-    if(image != null)
-    {
-        var imageChild = document.createElement("img");
-        imageChild.src = image;
-        imageChild.style.cssText = "float: left"; //Since IE is stupid and doesn't support either style.cssFloat or element.setAttribute('style', ...) I had to use this.
-        contentDiv.appendChild(imageChild);
-    }
-
-    contentDiv.appendChild (document.createTextNode(description));
-    displayDiv.appendChild(contentDiv);
-
-
-    var hRule = document.createElement("hr");
-    hRule.height = "1px";
-    hRule.color = "black";
-    displayDiv.appendChild(hRule);
-
-    var linkDiv = document.createElement("a");
-    var linkURL = "http://objects.activeworlds.com/cgi-bin/teleport.cgi?aw_" + parseLatLng(parseLocation(location));
-    linkDiv.href = linkURL;
-    linkDiv.innerHTML = "Teleport Here";
-    displayDiv.appendChild(linkDiv);
-
-    worldMap.addOverlay(createMarker(parseLocation(location), displayDiv));
-}
 
 // General event handlers
 // Handles the user pressing enter while searching coordinates.
