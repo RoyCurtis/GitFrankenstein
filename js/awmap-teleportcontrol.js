@@ -5,6 +5,11 @@
  * License unknown.
  */
 
+/**
+ * Custom Leaflet control for the teleport-to-Active-Worlds button.
+ *
+ * @type {L.Control}
+ */
 var AWTeleportControl = L.Control.extend({
 
     onAdd: function()
@@ -12,6 +17,7 @@ var AWTeleportControl = L.Control.extend({
         var controlDom = document.body.querySelector("#teleportControl");
         controlDom.remove();
 
+        // Change URL to AW's teleport script with current coordinates
         controlDom.onclick = function()
         {
             var center  = worldMap.getCenter();

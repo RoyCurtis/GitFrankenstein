@@ -5,9 +5,6 @@
  * License unknown.
  */
 
-// TODO:
-// Use the leaflet plugin for scaled missing tiles
-
 /** Global for holding the Leaflet.js instance */
 var worldMap;
 
@@ -38,8 +35,10 @@ function setupMap()
         // Make dragging on touch devices a little looser
         inertiaDeceleration: 2000,
 
+        // Simple coordinate system; necessary for AW's map
+        crs: L.CRS.Simple,
+
         center: [-160, 160],
-        crs:    L.CRS.Simple,
         layers: [ new AWLayer() ],
         zoom:   DEFAULT_ZOOM
     });
@@ -62,7 +61,7 @@ function setupMap()
 
         history.replaceState(
             null,
-            "AWMapper",
+            "AlphaMapper - AW " + latLng2PrettyCoords(center),
             "?location=" + latLng2PrettyCoords(center, '_') + "&zoom=" + zoom
         );
     });

@@ -148,7 +148,11 @@ function parseCoords(str)
     return [lat, lng];
 }
 
-/** Parses the current URL's query string to coordinates and zoom */
+/**
+ * Parses the current URL's query string to coordinates and zoom
+ *
+ * @return {{location: AWCoords, zoom: number}}
+ */
 function query2CoordsAndZoom()
 {
     var result = {

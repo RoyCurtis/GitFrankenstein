@@ -5,6 +5,11 @@
  * License unknown.
  */
 
+/**
+ * Custom TileLayer class for loading AlphaMapper tiles with a fallback.
+ *
+ * @type {FallbackTileLayer}
+ */
 var AWLayer = FallbackTileLayer.extend({
 
     options: {
