@@ -27,6 +27,17 @@
 var REGEX_COORDS = /^(\d{1,5}(?:\.\d{1,5})?)([NS])\s*(?:(\d{1,5}(?:\.\d{1,5})?)([WE]))?$/mi;
 
 /**
+ * Scale factor for converting between lat/long and AW coordinates.
+ *
+ * 65536 is the max. diameter of the entire map in decameters (aka cells or coords)...
+ * Divide it by tile size 320, and we get the scale (how many cells make up one map unit).
+ *
+ * @const
+ * @type {number}
+ */
+var LATLNG2COORDS = 65536 / 320;
+
+/**
  * Converts a given latitude and longitude to Active Worlds coordinates.
  *
  * Conversion notes:
@@ -43,14 +54,9 @@ function latLng2Coords(latlng)
     var lat = Math.abs(latlng.lat) - 160;
     var lng = latlng.lng - 160;
 
-    // 65535 is the max. diameter of the entire map in decameters (aka cells or coords)...
-    // Divide it by tile size 320, and we get the scale. Or, how many cells make up one
-    // map unit.
-    var scale = 65535 / 320;
-
     // Scale the lat/longs and round them
-    lat = Math.round(lat * scale);
-    lng = Math.round(lng * scale);
+    lat = Math.round(lat * LATLNG2COORDS);
+    lng = Math.round(lng * LATLNG2COORDS);
 
     // Finally, clamp them so they don't go beyond AW's limits
     lat = Math.min(Math.max(lat, -32767), 32767);
@@ -70,6 +76,35 @@ function latLng2PrettyCoords(latlng)
     var coords = latLng2Coords(latlng);
 
     return coords2PrettyCoords(coords);
+}
+
+/**
+ * Converts given coords into latitude and longitude for Leaflet.
+ *
+ * @param {AWCoords} coords
+ * @returns {L.LatLng}
+ */
+function coords2LatLng(coords)
+{
+    // First, convert the lat/longs to something more sane
+    // Makes it so lat/lng 0/0 is ground zero and south-east is positive
+    // var lat = Math.abs(latlng.lat) - 160;
+    // var lng = latlng.lng - 160;
+
+// * Conversion notes:
+// * Latitude goes from 0 to -320 from north to south
+// * Longitude goes from 0 to 320 from west to east
+
+    // First, scale the coordinates back to lat/longs
+    var lat = coords[0] / LATLNG2COORDS;
+    var lng = coords[1] / LATLNG2COORDS;
+
+    // Finally, offset values back to lat/long ranges
+    lat += 160;
+    lat *= -1;
+    lng += 160;
+
+    return L.latLng(lat, lng);
 }
 
 /**

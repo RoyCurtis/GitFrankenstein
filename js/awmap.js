@@ -6,7 +6,11 @@
  */
 
 // TODO:
-// Use the leaflet plugin for scaled missing tiless
+// Use the leaflet plugin for scaled missing tiles
+// State saving on pan
+// URL changing on pan
+
+var worldMap;
 
 /** Main entry point of AlphaMapper; called from index.html */
 function main()
@@ -23,13 +27,19 @@ function setupNavBox()
 
     navBar.onsubmit = function(e)
     {
-        var coords = parseCoords(navInput.value);
-        var pretty = coords2PrettyCoords(coords);
-        console.log(coords);
-
-        navInput.value = pretty;
-
+        // Needed up here in case this function errors...
         e.preventDefault();
+
+        // Only zoom in if we're zoomed pretty far out
+        var targetZoom = Math.max( 8, worldMap.getZoom() );
+        var coords     = parseCoords(navInput.value);
+        var latlng     = coords2LatLng(coords);
+
+        navInput.value = coords2PrettyCoords(coords);
+
+        worldMap.setView(latlng, targetZoom);
+        console.log(coords, latlng);
+
         return false;
     };
 
@@ -51,8 +61,7 @@ function setupMap()
     // Helpful references:
     // http://leafletjs.com/examples/crs-simple/crs-simple.html
     // http://leafletjs.com/examples/extending/extending-2-layers.html
-    var worldMap = L.map("map", {
-
+    worldMap = L.map("map", {
         // Make dragging on touch devices a little looser
         inertiaDeceleration: 2000,
 
