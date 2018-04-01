@@ -137,7 +137,7 @@ Papa.parse("RoyCurtis2012.csv", {
 
         selectCategory("General");
 
-        document.body.onclick = function()
+        document.body.onclick = document.body.ontouchstart = function()
         {
             document.body.onclick = null;
             document.body.classList.remove('splash');
