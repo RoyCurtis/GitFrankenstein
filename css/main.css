@@ -17,6 +17,7 @@ html.splash,
 body.splash
 {
     background: url('../res/splash.png') no-repeat center center;
+    cursor:     pointer;
 }
 
 .hidden
@@ -24,7 +25,10 @@ body.splash
     display: none;
 }
 
-.touched
+.touched,
+#selectionScreen #questionRoll li:hover,
+#selectionScreen toolbar btn:hover,
+#categoryScreen btn:hover
 {
     background: black;
     color:      white;
@@ -40,6 +44,7 @@ body.splash
 
 #selectionScreen #questionRoll li
 {
+    cursor:        pointer;
     font-size:     small;
     padding:       0.2em 0.4em;
     height:        64px;
@@ -62,6 +67,7 @@ body.splash
 
 #selectionScreen toolbar btn
 {
+    cursor:     pointer;
     display:    inline-block;
     padding:    .4em .6em;
     margin:     0 .6em;
@@ -81,6 +87,7 @@ body.splash
 
 #categoryScreen btn
 {
+    cursor:        pointer;
     display:       block;
     float:         left;
     width:         40%;
@@ -104,6 +111,7 @@ body.splash
 
 #questionScreen
 {
+    cursor:        pointer;
     position:      absolute;
     top:           0;
     width:         100%;
