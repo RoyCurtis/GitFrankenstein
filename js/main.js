@@ -26,6 +26,15 @@ function randInt(min, max)
     return Math.floor(Math.random() * (max - min)) + min;
 }
 
+// https://developer.mozilla.org/en-US/docs/Web/API/NodeList/forEach
+if (window.NodeList && !NodeList.prototype.forEach)
+    NodeList.prototype.forEach = function (callback, thisArg)
+    {
+        thisArg = thisArg || window;
+        for (var i = 0; i < this.length; i++)
+            callback.call(thisArg, this[i], i, this);
+    };
+
 // Functions
 function prepareDatabase(results)
 {
@@ -207,5 +216,6 @@ Papa.parse("RoyCurtis2012.csv", {
                 setTimeout(function() { btn.classList.remove('touched'); }, 250);
             });
         });
+
     }
 });
