@@ -16,7 +16,7 @@ body
 html.splash,
 body.splash
 {
-    background: url('../res/splash.png') no-repeat;
+    background: url('../res/splash.png') no-repeat center center;
 }
 
 .hidden
