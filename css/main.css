@@ -25,10 +25,7 @@ body.splash
     display: none;
 }
 
-.touched,
-#selectionScreen #questionRoll li:hover,
-#selectionScreen toolbar btn:hover,
-#categoryScreen btn:hover
+.touched
 {
     background: black;
     color:      white;
