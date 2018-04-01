@@ -4,15 +4,16 @@
 var DATABASE   = {};
 var CATEGORIES = [];
 
-var eQuestionRoll = $('#questionRoll');
-var eBtnPrevPage  = $('#btnPrevPage');
-var eBtnNextPage  = $('#btnNextPage');
-var eBtnRandom    = $('#btnRandom');
-var eBtnCategory  = $('#btnCategory');
+var eQuestionRoll = document.querySelector('#questionRoll');
+var eCategoryRoll = document.querySelector('#categoryRoll');
+var eBtnPrevPage  = document.querySelector('#btnPrevPage');
+var eBtnNextPage  = document.querySelector('#btnNextPage');
+var eBtnRandom    = document.querySelector('#btnRandom');
+var eBtnCategory  = document.querySelector('#btnCategory');
 
-var eSelectionScreen = $('#selectionScreen');
-var eQuestionScreen  = $('#questionScreen');
-var eCategoryScreen  = $('#categoryScreen');
+var eSelectionScreen = document.querySelector('#selectionScreen');
+var eQuestionScreen  = document.querySelector('#questionScreen');
+var eCategoryScreen  = document.querySelector('#categoryScreen');
 
 var currentCategory;
 var entriesPerPage = 10;
@@ -31,20 +32,21 @@ function prepareDatabase(results)
     var database = {};
     var data     = results.data;
 
-    $.each(data, function (_, question) {
+    data.forEach(function (question) {
         var category = question['Category'];
 
-        if ( $.inArray(question['Category'], CATEGORIES) == -1 )
+        if (CATEGORIES.indexOf(question['Category']) === -1)
         {
-            var option = $('<btn>')
-                .text(category)
-                .click(function()
-                {
-                    selectCategory(category);
-                    eCategoryScreen.addClass("hidden");
-                });
+            var option = document.createElement('btn');
 
-            eCategoryScreen.append(option);
+            option.innerText = category;
+            option.onclick   = function()
+            {
+                selectCategory(category);
+                eCategoryScreen.classList.add("hidden");
+            };
+
+            eCategoryRoll.appendChild(option);
             CATEGORIES.push(category);
             database[category]         = [];
             database[category].history = [];
@@ -53,7 +55,6 @@ function prepareDatabase(results)
         database[category].push(question);
     });
 
-    eCategoryScreen.append("<div>Select a category</div>");
     return database;
 }
 
@@ -64,7 +65,7 @@ function selectCategory(category)
     totalPages      = Math.ceil(DATABASE[category].length / entriesPerPage);
 
     selectPage(0);
-    eBtnCategory.text(category);
+    eBtnCategory.innerText = category;
 }
 
 function selectPage(page)
@@ -73,8 +74,13 @@ function selectPage(page)
     var lastEntry  = firstEntry + entriesPerPage;
     currentPage = page;
 
-    eQuestionRoll.children().removeData().unbind();
-    eQuestionRoll.empty();
+    eQuestionRoll.childNodes.forEach( function(entry)
+    {
+        entry.entryData = null;
+        entry.onclick   = null;
+    });
+
+    eQuestionRoll.innerHTML = null;
 
     for (var i = firstEntry; i < lastEntry; i++)
     {
@@ -82,37 +88,38 @@ function selectPage(page)
 
         if (!entryData) break;
 
-        var entry = $('<li>')
-            .text(entryData['Question'])
-            .data("question", entryData)
-            .click( function (event) {
-                showQuestion(event.currentTarget);
-            });
+        var entry = document.createElement("li");
 
-        eQuestionRoll.append(entry);
+        entry.innerText = entryData['Question'];
+        entry.entryData = entryData;
+        entry.onclick   = function (event)
+        {
+            showQuestion(event.currentTarget);
+        };
+
+        eQuestionRoll.appendChild(entry);
     }
 }
 
 function showQuestion(target)
 {
-    eQuestionScreen.removeClass("hidden");
+    eQuestionScreen.classList.remove("hidden");
 
-    var data    = $(target).data("question") || target;
-    var answers = eQuestionScreen.find("answer");
+    var data    = target.entryData || target;
+    var answers = eQuestionScreen.querySelectorAll("answer");
 
-    eQuestionScreen
-        .find("question").text(data["Question"]);
+    eQuestionScreen.querySelector("question").innerText = data["Question"];
 
     for (var i = 0; i < 4; i++)
     {
-        var answer     = answers.eq(i);
+        var answer     = answers[i];
         var answerText = data["Option " + (i + 1)];
-        answer.text(answerText);
+        answer.innerText = answerText;
 
-        if ( answerText.toLowerCase() == data["Answer"].toLowerCase() )
-            answer.attr("class", "correct");
+        if ( answerText.toLowerCase() === data["Answer"].toLowerCase() )
+            answer.classList.add("correct");
         else
-            answer.attr("class", "");
+            answer.classList.remove("correct");
     }
 }
 
@@ -130,21 +137,20 @@ Papa.parse("RoyCurtis2012.csv", {
 
         selectCategory("General");
 
-        $(document.body).click(function()
+        document.body.onclick = function()
         {
-            $(document.body)
-                .unbind()
-                .removeClass('splash');
+            document.body.onclick = null;
+            document.body.classList.remove('splash');
 
-            eSelectionScreen.removeClass('hidden');
-        });
+            eSelectionScreen.classList.remove('hidden');
+        };
 
-        eQuestionScreen.click(function()
+        eQuestionScreen.onclick = function()
         {
-            eQuestionScreen.addClass("hidden");
-        });
+            eQuestionScreen.classList.add("hidden");
+        };
 
-        eBtnPrevPage.click(function ()
+        eBtnPrevPage.onclick = function()
         {
             currentPage--;
 
@@ -152,9 +158,9 @@ Papa.parse("RoyCurtis2012.csv", {
                 currentPage = totalPages - 1;
 
             selectPage(currentPage);
-        });
+        };
 
-        eBtnNextPage.click(function ()
+        eBtnNextPage.onclick = function()
         {
             currentPage++;
 
@@ -162,20 +168,20 @@ Papa.parse("RoyCurtis2012.csv", {
                 currentPage = 0;
 
             selectPage(currentPage);
-        });
+        };
 
-        eBtnRandom.click(function ()
+        eBtnRandom.onclick = function()
         {
             for (var i = 0; i < 1000; i++)
             {
                 var randIdx = randInt(0, currentCategory.length);
 
-                if ( $.inArray(randIdx, currentCategory.history) == -1 )
+                if (currentCategory.history.indexOf(randIdx) === -1)
                     currentCategory.history.push(randIdx);
                 else
                     continue;
 
-                if (currentCategory.history.length == currentCategory.length)
+                if (currentCategory.history.length === currentCategory.length)
                 {
                     console.log("Exhausted all random");
                     currentCategory.history = [];
@@ -185,19 +191,21 @@ Papa.parse("RoyCurtis2012.csv", {
                 showQuestion(randEntry);
                 break;
             }
-        });
+        };
 
-        eBtnCategory.click(function ()
+        eBtnCategory.onclick = function()
         {
-            eCategoryScreen.removeClass("hidden");
-        });
+            eCategoryScreen.classList.remove("hidden");
+        };
 
         // Emulates touch response CSS on Kindle
-        $('toolbar > btn').click(function(event)
+        document.querySelectorAll('toolbar > btn').forEach( function(btn)
         {
-            var btn = $(event.currentTarget);
-            btn.addClass('touched');
-            setTimeout(function() { btn.removeClass('touched'); }, 250);
+            btn.addEventListener('click', function()
+            {
+                btn.classList.add('touched');
+                setTimeout(function() { btn.classList.remove('touched'); }, 250);
+            });
         });
     }
 });
