@@ -1,135 +1,178 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+*
+{
+    margin:     0;
+    padding:    0;
+    box-sizing: border-box;
 }
+
 html,
-body {
-  height: 100%;
-  overflow: hidden;
-  font-family: Caecilia, "Times New Roman", serif;
+body
+{
+    height:      100%;
+    overflow:    hidden;
+    font-family: Caecilia, "Times New Roman", serif;
 }
+
 html.splash,
-body.splash {
-  background: url('../res/splash.png') no-repeat;
+body.splash
+{
+    background: url('../res/splash.png') no-repeat;
 }
-.hidden {
-  display: none;
+
+.hidden
+{
+    display: none;
 }
-.touched {
-  background: black;
-  color: white;
+
+.touched
+{
+    background: black;
+    color:      white;
 }
-#selectionScreen {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
+
+#selectionScreen
+{
+    position: absolute;
+    width:    100%;
+    height:   100%;
+    overflow: hidden;
 }
-#selectionScreen #questionRoll li {
-  font-size: small;
-  padding: 0.2em 0.4em;
-  height: 64px;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  border: none;
-  border-bottom: 1px solid #AAAAAA;
+
+#selectionScreen #questionRoll li
+{
+    font-size:     small;
+    padding:       0.2em 0.4em;
+    height:        64px;
+    text-overflow: ellipsis;
+    overflow:      hidden;
+    border:        none;
+    border-bottom: 1px solid #AAAAAA;
 }
-#selectionScreen toolbar {
-  display: block;
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  background: white;
-  font-size: x-large;
-  border-top: 2px solid black;
+
+#selectionScreen toolbar
+{
+    display:    block;
+    position:   absolute;
+    bottom:     0;
+    width:      100%;
+    background: white;
+    font-size:  x-large;
+    border-top: 2px solid black;
 }
-#selectionScreen toolbar btn {
-  display: inline-block;
-  padding: .4em .6em;
-  margin: 0 .6em;
-  text-align: center;
+
+#selectionScreen toolbar btn
+{
+    display:    inline-block;
+    padding:    .4em .6em;
+    margin:     0 .6em;
+    text-align: center;
 }
-#categoryScreen {
-  position: absolute;
-  top: 0;
-  width: 100%;
-  background: white;
-  border-bottom: 2px solid black;
-  box-shadow: 0.25em 0.5em rgba(0, 0, 0, 0.5);
-  z-index: 200;
+
+#categoryScreen
+{
+    position:      absolute;
+    top:           0;
+    width:         100%;
+    background:    white;
+    border-bottom: 2px solid black;
+    box-shadow:    0.25em 0.5em rgba(0, 0, 0, 0.5);
+    z-index:       200;
 }
-#categoryScreen btn {
-  display: block;
-  float: left;
-  width: 40%;
-  padding: 0.4em;
-  margin: 0.4em 28px;
-  text-align: center;
-  border: 2px solid black;
-  border-radius: 4px;
-  font-size: large;
-  font-weight: bold;
+
+#categoryScreen btn
+{
+    display:       block;
+    float:         left;
+    width:         40%;
+    padding:       0.4em;
+    margin:        0.4em 28px;
+    text-align:    center;
+    border:        2px solid black;
+    border-radius: 4px;
+    font-size:     large;
+    font-weight:   bold;
 }
-#categoryScreen > div {
-  font-style: italic;
-  text-align: center;
-  padding: 1em;
-  color: #AAA;
-  clear: both;
+
+#categoryScreen > div
+{
+    font-style: italic;
+    text-align: center;
+    padding:    1em;
+    color:      #AAAAAA;
+    clear:      both;
 }
-#questionScreen {
-  position: absolute;
-  top: 0;
-  width: 100%;
-  background: white;
-  border-bottom: 2px solid black;
-  box-shadow: 0.25em 0.5em rgba(0, 0, 0, 0.5);
-  z-index: 100;
+
+#questionScreen
+{
+    position:      absolute;
+    top:           0;
+    width:         100%;
+    background:    white;
+    border-bottom: 2px solid black;
+    box-shadow:    0.25em 0.5em rgba(0, 0, 0, 0.5);
+    z-index:       100;
 }
-#questionScreen question {
-  display: block;
-  margin: 1em auto;
-  padding: 0.5em 0;
-  width: 90%;
-  border: double black;
-  border-width: 4px 0;
-  text-align: center;
-  font-size: x-large;
+
+#questionScreen question
+{
+    display:      block;
+    margin:       1em auto;
+    padding:      0.5em 0;
+    width:        90%;
+    border:       double black;
+    border-width: 4px 0;
+    text-align:   center;
+    font-size:    x-large;
 }
-#questionScreen answer {
-  display: block;
-  margin: 0.5em auto;
-  padding: 0.2em 0.4em;
-  width: 90%;
-  border: 2px solid black;
-  border-radius: 4px;
-  text-align: right;
-  font-size: large;
-  font-weight: bold;
+
+#questionScreen answer
+{
+    display:       block;
+    margin:        0.5em auto;
+    padding:       0.2em 0.4em;
+    width:         90%;
+    border:        2px solid black;
+    border-radius: 4px;
+    text-align:    right;
+    font-size:     large;
+    font-weight:   bold;
 }
-#questionScreen answer:before {
-  float: left;
+
+#questionScreen answer:before
+{
+    float: left;
 }
-#questionScreen answer:nth-of-type(1):before {
-  content: "A";
+
+#questionScreen answer:nth-of-type(1):before
+{
+    content: "A";
 }
-#questionScreen answer:nth-of-type(2):before {
-  content: "B";
+
+#questionScreen answer:nth-of-type(2):before
+{
+    content: "B";
 }
-#questionScreen answer:nth-of-type(3):before {
-  content: "C";
+
+#questionScreen answer:nth-of-type(3):before
+{
+    content: "C";
 }
-#questionScreen answer:nth-of-type(4):before {
-  content: "D";
+
+#questionScreen answer:nth-of-type(4):before
+{
+    content: "D";
 }
-#questionScreen answer.correct {
-  background: black;
-  color: white;
+
+#questionScreen answer.correct
+{
+    background: black;
+    color:      white;
 }
-#questionScreen > div {
-  font-style: italic;
-  text-align: center;
-  padding: 1em;
-  color: #AAA;
+
+#questionScreen > div
+{
+    font-style: italic;
+    text-align: center;
+    padding:    1em;
+    color:      #AAAAAA;
 }
