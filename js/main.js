@@ -9,7 +9,7 @@ var searchList = document.getElementById('search-list');
 var entryList  = document.getElementById('entry-list');
 var editing    = true;
 
-searchList.value = "";
+searchList.value = localStorage['searchList'] || '';
 
 goBtn.onclick = function()
 {
@@ -40,6 +40,11 @@ goBtn.onclick = function()
 
     editing = !editing;
     goBtn.innerText = editing ? "Go!" : "Edit!";
+};
+
+searchList.oninput = function(e)
+{
+    localStorage['searchList'] = searchList.value.trim();
 };
 
 entryList.ondblclick = function(e)
