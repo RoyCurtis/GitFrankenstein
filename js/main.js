@@ -75,6 +75,7 @@ entryList.ondblclick = function(e)
 
         if (autodeleteBox.checked)
         {
+            entryList.selectedIndex += 1;
             e.target.remove();
             entry2SearchList();
         }
