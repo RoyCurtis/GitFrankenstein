@@ -5,19 +5,23 @@
 
 var form          = document.querySelector('form');
 var goBtn         = document.querySelector('#go');
-var luckyBox      = document.querySelector('#lucky');
 var autodeleteBox = document.querySelector('#autodelete');
+var luckyBox      = document.querySelector('#lucky');
 var searchList    = document.querySelector('#search-list');
 var entryList     = document.querySelector('#entry-list');
 var editing       = true;
 
-searchList.value = localStorage['searchList'] || '';
+searchList.value      = localStorage['searchList']    || '';
+autodeleteBox.checked = localStorage['autodeleteBox'] === 'true';
+luckyBox.checked      = localStorage['luckyBox']      !== 'false';
 
 // Global functions
 
 function saveState()
 {
-    localStorage['searchList'] = searchList.value.trim();
+    localStorage['searchList']    = searchList.value.trim();
+    localStorage['autodeleteBox'] = autodeleteBox.checked;
+    localStorage['luckyBox']      = luckyBox.checked;
 }
 
 function search2EntryList()
@@ -101,5 +105,7 @@ form.onsubmit = function(e)
     playEntry({ target: selected[0] });
 };
 
-searchList.oninput   = saveState;
-entryList.ondblclick = playEntry;
+entryList.ondblclick   = playEntry;
+searchList.oninput     = saveState;
+luckyBox.onchange      = saveState;
+autodeleteBox.onchange = saveState;
