@@ -3,6 +3,8 @@
  * Roy Curtis, MIT license, 2018
  */
 
+// Global state and DOM references
+
 var form          = document.querySelector('form');
 var goBtn         = document.querySelector('#go');
 var autodeleteBox = document.querySelector('#autodelete');
@@ -11,12 +13,15 @@ var searchList    = document.querySelector('#search-list');
 var entryList     = document.querySelector('#entry-list');
 var editing       = true;
 
+// Load state from storage
+
 searchList.value      = localStorage['searchList']    || '';
 autodeleteBox.checked = localStorage['autodeleteBox'] === 'true';
 luckyBox.checked      = localStorage['luckyBox']      !== 'false';
 
 // Global functions
 
+/** Saves data (e.g. entry list, checkboxes) to storage */
 function saveState()
 {
     localStorage['searchList']    = searchList.value.trim();
@@ -24,12 +29,15 @@ function saveState()
     localStorage['luckyBox']      = luckyBox.checked;
 }
 
+/** Converts user-inputted list of search terms into an interactive list */
 function search2EntryList()
 {
     var entries = searchList.value.trim().split('\n');
 
+    // Clear existing entries
     entryList.innerHTML = '';
 
+    // Generate an OPTION element for each search term entry
     entries.forEach(function(v)
     {
         var opt = document.createElement("option");
@@ -41,18 +49,22 @@ function search2EntryList()
     });
 }
 
+/** Converts the interactive list back to an editable list of search terms */
 function entry2SearchList()
 {
     var entries = entryList.children;
 
+    // Clear existing entries
     searchList.value = '';
 
     for (var i = 0; i < entries.length; i++)
         searchList.value += entries[i].innerText + '\n';
 
+    // Persist data to storage, in case an entry was auto-deleted
     saveState();
 }
 
+/** Opens the selected entry as a Google search in a new tab or window */
 function playEntry(e)
 {
     if (e.target.nodeName.toLowerCase() === 'option')
@@ -65,6 +77,7 @@ function playEntry(e)
 
         if (autodeleteBox.checked)
         {
+            // Auto-select next entry on delete
             entryList.selectedIndex += 1;
             e.target.remove();
             entry2SearchList();
@@ -89,10 +102,11 @@ goBtn.onclick = function()
         entryList.classList.add('hidden');
     }
 
-    editing = !editing;
+    editing         = !editing;
     goBtn.innerText = editing ? "Go!" : "Edit!";
 };
 
+// Handle ENTER key on selected element
 form.onsubmit = function(e)
 {
     e.preventDefault();

@@ -62,8 +62,8 @@ body > form
 
 #entry-list
 {
+    border:    none;
     flex-grow: 1;
-    border: none;
 }
 
 #entry-list option
