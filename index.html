@@ -12,6 +12,8 @@
 </head>
 
 <body>
+<form>
+  
   <div class="checkboxes">
     <label id="lucky-field">
       <input id="lucky" type="checkbox" checked />
@@ -24,7 +26,8 @@
     </label>
   </div>
 
-  <button id="go">Go!</button>
+  <button id="go" type="button">Go!</button>
+  <button id="submit" type="submit" hidden>Play entry</button>
 
   <select id="entry-list" size="4" class="hidden"
           title="List of playlist entries. Double-click to play in new window/tab.">
@@ -35,6 +38,8 @@
             placeholder="Copy and paste the list of search terms you want here, then click 'Go!'">
     Is javascript disabled?
   </textarea>
+
+</form>
 </body>
 
 <scripts>

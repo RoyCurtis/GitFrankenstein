@@ -3,18 +3,38 @@
  * Roy Curtis, MIT license, 2018
  */
 
-var goBtn         = document.getElementById('go');
-var luckyBox      = document.getElementById('lucky');
-var autodeleteBox = document.getElementById('autodelete');
-var searchList    = document.getElementById('search-list');
-var entryList     = document.getElementById('entry-list');
+var form          = document.querySelector('form');
+var goBtn         = document.querySelector('#go');
+var luckyBox      = document.querySelector('#lucky');
+var autodeleteBox = document.querySelector('#autodelete');
+var searchList    = document.querySelector('#search-list');
+var entryList     = document.querySelector('#entry-list');
 var editing       = true;
 
 searchList.value = localStorage['searchList'] || '';
 
+// Global functions
+
 function saveState()
 {
     localStorage['searchList'] = searchList.value.trim();
+}
+
+function search2EntryList()
+{
+    var entries = searchList.value.trim().split('\n');
+
+    entryList.innerHTML = '';
+
+    entries.forEach(function(v)
+    {
+        var opt = document.createElement("option");
+
+        opt.value     = v;
+        opt.innerText = v;
+
+        entryList.add(opt);
+    });
 }
 
 function entry2SearchList()
@@ -29,41 +49,7 @@ function entry2SearchList()
     saveState();
 }
 
-goBtn.onclick = function()
-{
-    if (editing)
-    {
-        var entries = searchList.value.trim().split('\n');
-
-        searchList.classList.add('hidden');
-        entryList.classList.remove('hidden');
-
-        entryList.innerHTML = '';
-
-        entries.forEach(function(v)
-        {
-            var opt = document.createElement("option");
-
-            opt.value     = v;
-            opt.innerText = v;
-
-            entryList.add(opt);
-        });
-    }
-    else
-    {
-        entry2SearchList();
-        searchList.classList.remove('hidden');
-        entryList.classList.add('hidden');
-    }
-
-    editing = !editing;
-    goBtn.innerText = editing ? "Go!" : "Edit!";
-};
-
-searchList.oninput = saveState;
-
-entryList.ondblclick = function(e)
+function playEntry(e)
 {
     if (e.target.nodeName.toLowerCase() === 'option')
     if (e.target.value)
@@ -80,4 +66,40 @@ entryList.ondblclick = function(e)
             entry2SearchList();
         }
     }
+}
+
+// Event handlers
+
+goBtn.onclick = function()
+{
+    if (editing)
+    {
+        search2EntryList();
+        searchList.classList.add('hidden');
+        entryList.classList.remove('hidden');
+    }
+    else
+    {
+        entry2SearchList();
+        searchList.classList.remove('hidden');
+        entryList.classList.add('hidden');
+    }
+
+    editing = !editing;
+    goBtn.innerText = editing ? "Go!" : "Edit!";
 };
+
+form.onsubmit = function(e)
+{
+    e.preventDefault();
+
+    var selected = entryList.selectedOptions;
+
+    if (selected.length === 0)
+        return;
+
+    playEntry({ target: selected[0] });
+};
+
+searchList.oninput   = saveState;
+entryList.ondblclick = playEntry;
