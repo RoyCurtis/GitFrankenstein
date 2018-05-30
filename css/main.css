@@ -74,10 +74,25 @@ body
     padding-top: 0.5em;
 }
 
-#lucky-form
+.checkboxes
 {
+    display:   flex;
+    flex-wrap: wrap;
+}
+
+#lucky-field,
+#autodelete-field
+{
+    cursor:     pointer;
+    flex-grow:  1;
     padding:    0.5em;
     text-align: center;
+}
+
+#lucky-field:hover,
+#autodelete-field:hover
+{
+    background: #4B6EAF;
 }
 
 #go

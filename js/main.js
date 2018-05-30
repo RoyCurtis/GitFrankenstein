@@ -3,13 +3,31 @@
  * Roy Curtis, MIT license, 2018
  */
 
-var goBtn      = document.getElementById('go');
-var luckyBox   = document.getElementById('lucky');
-var searchList = document.getElementById('search-list');
-var entryList  = document.getElementById('entry-list');
-var editing    = true;
+var goBtn         = document.getElementById('go');
+var luckyBox      = document.getElementById('lucky');
+var autodeleteBox = document.getElementById('autodelete');
+var searchList    = document.getElementById('search-list');
+var entryList     = document.getElementById('entry-list');
+var editing       = true;
 
 searchList.value = localStorage['searchList'] || '';
+
+function saveState()
+{
+    localStorage['searchList'] = searchList.value.trim();
+}
+
+function entry2SearchList()
+{
+    var entries = entryList.children;
+
+    searchList.value = '';
+
+    for (var i = 0; i < entries.length; i++)
+        searchList.value += entries[i].innerText + '\n';
+
+    saveState();
+}
 
 goBtn.onclick = function()
 {
@@ -34,6 +52,7 @@ goBtn.onclick = function()
     }
     else
     {
+        entry2SearchList();
         searchList.classList.remove('hidden');
         entryList.classList.add('hidden');
     }
@@ -42,10 +61,7 @@ goBtn.onclick = function()
     goBtn.innerText = editing ? "Go!" : "Edit!";
 };
 
-searchList.oninput = function(e)
-{
-    localStorage['searchList'] = searchList.value.trim();
-};
+searchList.oninput = saveState;
 
 entryList.ondblclick = function(e)
 {
@@ -56,5 +72,11 @@ entryList.ondblclick = function(e)
         var lucky = luckyBox.checked ? "&btnI=1" : "";
 
         window.open("http://google.com/search?q=" + term + "+site%3Ayoutube.com" + lucky);
+
+        if (autodeleteBox.checked)
+        {
+            e.target.remove();
+            entry2SearchList();
+        }
     }
 };
