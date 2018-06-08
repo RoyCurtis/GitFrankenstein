@@ -1,26 +1,22 @@
-**Pinhead** is a simple Discord bot that pins messages to a specific channel. This is a
-workaround for Discord's per-channel 50 pin limit.
+Welcome to **GitFrankenstein**. This is my attempt at better understanding Git; by trying
+to octopus-merge all my repositories at various points in their history, into one franken
+repository.
 
-# Installation
+As inspired by https://www.destroyallsoftware.com/blog/2017/the-biggest-and-weirdest-commits-in-linux-kernel-git-history
 
-1. `git clone https://github.com/RoyCurtis/Pinhead.git pinhead && cd pinhead`
-1. `npm install` - Installs dependencies
-1. Copy `config.yml.example` to `config.yml` and fill in the required values
-1. `node index.js` - Runs the bot
-1. Setup a specific role (e.g. `pinner`) to allow users to pin messages
-    * This is optional; leave `role` blank to allow anybody to pin
-1. Setup a custom emoji, or specify a built-in emoji, to use as the pin trigger reaction
-1. Setup the target channel as a _text_ channel (e.g. `#memes`)
+# Process
 
-# Usage
+*Values used are examples. I mix some up, e.g. amount of commit rewinds from `HEAD`*
 
-1. User sees amusing message and reacts to it using the configured superpin emoji
-1. Bot goes ahead and copies the message to the configured channel
+1. `git fetch --progress "../ASE2GIMP" master:ase2gimp` - Fetches the history of another
+local repository, but renames its master branch to its own repo name.
+1. `git checkout --force ase2gimp` - Switch to that fetched repository
+1. `git reset --mixed HEAD~2` - Rewind the repository back by 2 commits
+1. Repeat steps 1-3 for other repositories
+1. `git checkout --force master` - Switch back to master (root)
+1. `git merge --allow-unrelated-histories ase2gimp Pinhead` - Merge the multiple repositories into one
+1. `git read-tree ase2gimp Pinhead` - Actually stages the files and changes of the merges (for some reason, [they don't appear without this step][1])
+1. Use a GUI, such as Git Extensions, to resolve any merge conflicts
+1. Commit!
 
-# Limitations
-
-* The bot will not unpin messages; that is up to anybody with message management perms
-* [Due to issues with Discord.js][1], only the previous 100 messages + any the bot has
-seen since running, are pinnable
-
-[1]: https://github.com/hydrabolt/discord.js/issues/1675
+[1]: https://stackoverflow.com/a/31186732/3354920
