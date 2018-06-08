@@ -1,3 +1,5 @@
-.idea/
-node_modules/
-config.yml
+pano/
+forum/bg-footer.png
+forum/bg-footer-small.png
+forum/ForumFooter.xcf
+*.lnk
