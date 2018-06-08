@@ -1,32 +1,28 @@
-**SleepCharter** is a custom web app, that generates a sleep chart based on my sleep data.
-[You can see it live by clicking this link][4].
+Welcome to **GitFrankenstein**. This is my attempt at better understanding Git; by trying
+to octopus-merge all my repositories at various points in their history, into one franken
+repository.
 
-Every teal bar is a period of sleep. You can hover over or click the bar for more info.
-Some periods of sleep span across two days; they'll highlight as one.
+As inspired by https://www.destroyallsoftware.com/blog/2017/the-biggest-and-weirdest-commits-in-linux-kernel-git-history
 
-![Screenshot of my sleep chart][1]
+# Process
 
-# Background
+*Values used are examples. I mix some up, e.g. amount of commit rewinds from `HEAD`*
 
-Every time I go to sleep (e.g. for a nap, or full, etc.), I note down when I go to bed and
-when I wake up. The times are not accurate; I snap them to the nearest quarter hour and I
-don't exactly account for laying in bed sleeplessly, etc.
+1. `git fetch --progress "../ASE2GIMP" master:ase2gimp` - Fetches the history of another
+local repository, but renames its master branch to its own repo name.
+1. `git checkout --force ase2gimp` - Switch to that fetched repository
+1. `git reset --mixed HEAD~2` - Rewind the repository back by 2 commits
+1. Repeat steps 1-3 for other repositories
+1. `git checkout --force master` - Switch back to master (root)
+1. `git read-tree ase2gimp Pinhead` - Stages the files and changes of the merges (for some reason, [they don't appear without this step][1])
+  * This cannot work on more than 8 branches at the same time, so must be done and the committed for each group of 8.
+  * Additionally, this will _remove_ or _overwrite_ changes per read-tree. Manual merge conflict resolution cannot be done with this command. I used GitExtensions to unstage file removals, thus treating each read-tree almost as an additive operation.
+1. `git merge --allow-unrelated-histories ase2gimp Pinhead` - Merge the multiple repositories into one
+1. Use a GUI, such as Git Extensions, to resolve any merge conflicts
+1. Commit!
 
-I have been manually recording this data since July 5th 2016. I was manually charting it
-with Inkscape for a few months.
+# Behind the scenes
 
-# Data format
+* Preparing the git fetch commands: https://gfycat.com/ViciousPleasingCanine
 
-I record my sleep and wake times simply on a Google Sheet. There are two columns; "Sleep"
-and "Wake". [Both columns use the Date/time format][2]. To use this data in SleepCharter,
-[I export the sheet to CSV][3].
-
-# Issues
-
-* Using JS to manually scale the sleep bars is not ideal. I've tried my best to use CSS
-for this purpose (e.g. percentages, relative positioning) but I couldn't figure it out.
-
-[1]: http://i.imgur.com/f4Vmla7.png
-[2]: http://i.imgur.com/gWCZpfT.png
-[3]: http://i.imgur.com/NeJjtJS.png
-[4]: https://roycurtis.github.io/SleepCharter/
+[1]: https://stackoverflow.com/a/31186732/3354920
