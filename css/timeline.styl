@@ -1,0 +1,143 @@
+// Do not generate vendor prefixes
+vendors = official
+
+// Timeline offset
+OFFSET = 0s
+
+.triangle-edge
+  animation triangle-bg-blink 2s steps(1) 1.5s infinite
+
+  &.north > triangle
+    animation triangle-blink 2s steps(1) (2/4)*0s infinite
+  &.east > triangle
+    animation triangle-blink 2s steps(1) (2/4)*1s infinite
+  &.south > triangle
+    animation triangle-blink 2s steps(1) (2/4)*2s infinite
+  &.west > triangle
+    animation triangle-blink 2s steps(1) (2/4)*3s infinite
+
+@keyframes triangle-blink
+  0%
+    border-color #068BFF transparent transparent transparent
+  6%
+    border-color #000000 transparent transparent transparent
+
+@keyframes triangle-bg-blink
+  0%
+    background #454545
+  6%
+    background #FF3A70
+  12%
+    background #454545
+
+.o
+  animation o-grow 9.5s ease-out 0s 1 normal forwards,
+            o-glow 2s steps(1) 0s infinite normal forwards,
+            appear-disappear 1s linear 12s reverse forwards
+
+@keyframes o-grow
+  to
+    font-size 94vmin
+
+@keyframes o-glow
+  0%
+    text-shadow 0 -2px #068BFF
+  6%
+    text-shadow none
+  25%
+    text-shadow 2px 0 #068BFF
+  31%
+    text-shadow none
+  50%
+    text-shadow 0 2px #068BFF
+  56%
+    text-shadow none
+  75%
+    text-shadow -2px 0 #068BFF
+  81%
+    text-shadow none
+
+@keyframes appear-disappear
+  from
+    opacity 0
+  to
+    opacity 1
+
+OFFSET = 9.75s
+
+.yeah
+  animation yeah-zoom 1s linear OFFSET forwards
+
+@keyframes yeah-zoom
+  0%
+    opacity 1
+    top -80%
+    font-size 750vmin
+  50%
+    opacity 1
+  100%
+    top 0
+    opacity 1
+    font-size 0
+
+OFFSET = 12s
+
+.purple-grid
+  td
+    &.middle
+      animation close-open 5.75s linear OFFSET forwards
+    &.corner
+      animation close-open-half 5.75s linear OFFSET forwards reverse
+
+@keyframes close-open
+  from
+    width  100%
+    height 100%
+  to
+    width  0
+    height 0
+
+@keyframes close-open-half
+  from
+    width  50%
+    height 50%
+  to
+    width  0
+    height 0
+
+OFFSET += 6.75s
+
+.triangle-zoom triangle
+  animation triangle-zoom 5s ease-out OFFSET forwards
+
+OFFSET += 5s
+
+.heart-zoom div
+  animation heart-zoom 5.2s ease-out OFFSET forwards
+
+@keyframes triangle-zoom
+  from
+    transform scale(1.5) rotate(100deg)
+  to
+    transform scale(0) rotate(180deg)
+
+@keyframes heart-zoom
+  from
+    transform scale(1) rotate(-45deg)
+  to
+    transform scale(0) rotate(-0deg)
+
+OFFSET += 5.2s
+
+.disease-scene
+  animation appear-disappear 0s OFFSET forwards
+
+  for lyric in (1..31)
+    span:nth-child({lyric})
+      animation lyric-zoom 0.6s ease-out ((0.3s * lyric) - 0.6s + OFFSET) forwards
+
+@keyframes lyric-zoom
+  from
+    font-size 40vmin
+  to
+    font-size 0

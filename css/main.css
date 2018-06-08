@@ -1,106 +1,200 @@
 /**
- * CSS styles for Playlister.
- * Roy Curtis, MIT license, 2018
+ * Sleep charter, main stylesheet
+ * Roy Curtis, MIT license, 2017
  */
 
-/* CSS reset */
-
+/*<editor-fold desc="CSS reset">*/
 html, body
 {
-    background:  #3C3F41;
-    color:       whitesmoke;
+    width:  100%;
+    height: 100%;
+
+    background:  #EEEEEE;
     font-family: sans-serif;
-    width:       100%;
-    height:      100%;
+    overflow:    hidden;
 }
 
 *
 {
+    box-sizing: border-box;
     margin:     0;
     padding:    0;
-    box-sizing: border-box;
+}
+/*</editor-fold>*/
+
+/*<editor-fold desc="Chart">*/
+sleep-chart
+{
+    display:      block;
+    padding-top:  16px;
+    padding-left: 16px;
+    overflow-x:   auto;
+    overflow-y:   hidden;
+    white-space:  nowrap;
+
+    -webkit-overflow-scrolling: touch;
 }
 
-/* Classes */
-
-.hidden
+sleep-chart.nojs
 {
-    display: none;
-}
+    width:  100%;
+    height: 100%;
 
-/* Sections */
-
-body > form
-{
-    display:        flex;
-    flex-direction: column;
-    width:          100%;
-    height:         100%;
-}
-
-#search-list,
-#entry-list
-{
-    background:    #2B2B2B;
-    border:        none;
-    border-bottom: 2px solid #4B4B4B;
-    color:         whitesmoke;
-}
-
-#search-list
-{
-    flex-grow: 1;
-    padding:   0.5em;
-    resize:    none;
-}
-
-#search-list::placeholder
-{
-    color:      #AAAAAA;
-    font-style: italic;
-}
-
-#entry-list
-{
-    border:    none;
-    flex-grow: 1;
-}
-
-#entry-list option
-{
-    padding: 0.25em 0.5em;
-}
-
-#entry-list option:first-child
-{
-    padding-top: 0.5em;
-}
-
-.checkboxes
-{
-    display:   flex;
-    flex-wrap: wrap;
-}
-
-#lucky-field,
-#autodelete-field
-{
-    cursor:     pointer;
-    flex-grow:  1;
-    padding:    0.5em;
-    text-align: center;
-}
-
-#lucky-field:hover,
-#autodelete-field:hover
-{
-    background: #4B6EAF;
-}
-
-#go
-{
-    cursor:      pointer;
     font-size:   xx-large;
-    font-weight: bold;
-    padding:     0.1em;
+    color:       #888888;
+    white-space: normal;
+
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+0,ffe2e2+100&0+0,1+100 */
+    background: -moz-linear-gradient(-45deg, rgba(255,255,255,0) 0%, rgba(255,226,226,1) 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(-45deg, rgba(255,255,255,0) 0%,rgba(255,226,226,1) 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(135deg, rgba(255,255,255,0) 0%,rgba(255,226,226,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 }
+/*</editor-fold>*/
+
+/*<editor-fold desc="Chart - left side hour axis">*/
+sleep-chart > .axis
+{
+    color:          black;
+    opacity:        0.5;
+    pointer-events: none;
+    position:       fixed;
+    z-index:        500;
+}
+
+sleep-chart > .axis > .hour
+{
+    height: 4.16666%;
+
+    align-items:   center;
+    border-bottom: 1px solid rgba(0,0,0,0.5);
+    font-size:     0.75em;
+    font-weight:   bold;
+    line-height:   175%;
+}
+
+sleep-chart > .axis > .hour:last-child { border-bottom: none; }
+/*</editor-fold>*/
+
+/*<editor-fold desc="Chart - alert box">*/
+sleep-chart > .alert
+{
+    top:   0;
+    left:  25vw;
+    width: 50vw;
+
+    background:  rgba(0, 0, 0, 0.75);
+    color:       white;
+    font-size:   1em;
+    padding:     0.5em;
+    position:    fixed;
+    text-align:  center;
+    white-space: normal;
+    z-index:     999;
+}
+
+sleep-chart > .alert.hidden { display: none; }
+/*</editor-fold>*/
+
+/*<editor-fold desc="Chart - Date labels">*/
+sleep-chart > year > label,
+sleep-chart > year > month > label,
+sleep-chart > year > month > day > label
+{
+    color: #404040;
+}
+
+sleep-chart > year > month:nth-child(odd) > label,
+sleep-chart > year > month:nth-child(odd) > day > label
+{
+    color: #808080;
+}
+/*</editor-fold>*/
+
+/*<editor-fold desc="Chart - Years">*/
+sleep-chart > year
+{
+    display: inline-block;
+}
+
+sleep-chart > year > label
+{
+    width:  0;
+    height: 0;
+
+    font-size:   4em;
+    line-height: 0.8em;
+    display:     block;
+    position:    relative;
+    z-index:     500;
+}
+/*</editor-fold>*/
+
+/*<editor-fold desc="Chart - Months">*/
+sleep-chart > year > month
+{
+    display: inline-block;
+}
+
+sleep-chart > year > month > label
+{
+    width:  0;
+    height: 0;
+
+    font-size: 2em;
+    display:   block;
+    position:  relative;
+    z-index:   500;
+}
+/*</editor-fold>*/
+
+/*<editor-fold desc="Chart - Days">*/
+sleep-chart > year > month > day
+{
+    width: 16px;
+
+    display:       inline-block;
+    position:      relative;
+    border-top:    4px solid #CCCCCC;
+    border-bottom: 4px solid #CCCCCC;
+}
+
+sleep-chart > year > month > day:hover {
+    background: #FAFAFA;
+}
+
+sleep-chart > year > month > day > label
+{
+    width: 100%;
+
+    bottom:     -20px;
+    font-size:  0.6em;
+    position:   absolute;
+    text-align: center;
+    z-index:    500;
+}
+/*</editor-fold>*/
+
+/*<editor-fold desc="Chart - Sleep bars">*/
+sleep-chart > year > month > day > sleep
+{
+    width: 100%;
+
+    background: #6F8A91;
+    position:   absolute;
+}
+
+sleep-chart > year > month > day > sleep.selected
+{
+    background: #9DC3CC;
+}
+
+sleep-chart > year > month > day > sleep.prediction
+{
+    background: #8F8F8F;
+}
+
+sleep-chart > year > month > day > sleep.selected.prediction
+{
+    background: #CCCCCC;
+}
+/*</editor-fold>*/

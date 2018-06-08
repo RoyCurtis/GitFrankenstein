@@ -1,0 +1,392 @@
+<?xml version="1.0" encoding="utf-8"?>
+<messages xmlns="urn:RAG.Phrases"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="urn:RAG.Phrases ./phrases.xsd" >
+
+<!--
+  Although the XML structure and schema are my work, please assume the contents of this
+  XML (especially the phrases themselves) are copyright of National Rail. Unlicensed.
+
+  Sources for these phrases:
+
+  * https://youtube.com/watch?v=ftiB6HLjWCM (Crewe)
+  * https://youtube.com/watch?v=14B_6H5QusI (Reading)
+  * https://youtube.com/watch?v=OOUQ0V7wS5U (Shrewsbury)
+  * https://youtube.com/watch?v=v-eqKjbXlaw (Southampton)
+  * https://youtube.com/watch?v=2Qe6PRLTvnI (Swindon)
+  * https://www.scribd.com/document/105631178/National-Rail-Delay-Phrases
+
+  See also the `ref` folder.
+-->
+
+<!-- Main set of phrases -->
+
+<phraseset id="root">
+  <!-- Train waiting at platform -->
+  <phrase>
+    <phraseset ref="platform_wait_intro"/>
+    <phraseset ref="calling_at" chance="50"/>
+    <phraseset ref="mind_the_gap" chance="5"/>
+    <phraseset ref="change_at" chance="5"/>
+    <phrase ref="not_stopping" chance="5"/>
+    <phraseset ref="request_stop" chance="5"/>
+    <phraseset ref="trolley_service" chance="5"/>
+    <phrase ref="coach_count" chance="90"/>
+    <phraseset ref="shop_service" chance="5"/>
+    <phrase ref="train_full" chance="5"/>
+    <phraseset ref="train_layout" chance="5"/>
+    <phraseset ref="train_seating" chance="5"/>
+    <phrase ref="platform_wait_end" chance="50" />
+  </phrase>
+
+  <!-- Train departing from platform -->
+  <phrase>
+    The train at platform <platform/> is <phrase ref="service_to"/>.
+    <phraseset ref="calling_at"/> Will passengers intending to travel on this service
+    please join the train now, as it is ready to leave. <phrase ref="platform_wait"/>,
+    which is ready to leave.
+  </phrase>
+
+  <!-- Terminating train -->
+  <phrase>
+    Platform <platform/> for the <phrase ref="service"/> from <station context="source"/>.
+    This train will terminate here.
+  </phrase>
+
+  <!-- Delayed and cancelled trains -->
+  <phrase>
+    <phrase ref="attention_please_platform" chance="25"/>
+    <phraseset ref="apology_begin"/> <phrase ref="service"/> to
+    <phrase ref="destination"/><phraseset ref="delayed_or_cancelled"/>
+  </phrase>
+
+  <phrase>
+    We are sorry that services are subject to delay because of <excuse/>
+    <optional> <phraseset ref="at_near"/> <station context="random"/></optional>.
+    <phraseset ref="general_apology_delay" chance="50"/>
+  </phrase>
+
+  <!-- Platform alterations -->
+  <phrase>
+    This is a platform alteration. The <phrase ref="service"/>
+    <phraseset ref="destination_from_to"/>, will now <phraseset ref="depart_arrive"/>
+    platform <platform/>.
+  </phrase>
+
+  <!-- Non-stop trains -->
+  <phrase>
+    The train now approaching platform <platform/> does not stop here. Stand back from the
+    edge of platform <platform/>. The next train is not scheduled to stop.
+  </phrase>
+
+  <!-- Out of service trains -->
+  <phrase>
+    The next train to arrive at platform <platform/> is not in passenger service. Please
+    do not board the next train at platform <platform/>.
+  </phrase>
+
+  <!-- Various notices and reminders (e.g. security) -->
+  <phrase>
+    <phrase ref="attention_please" chance="10"/> <phraseset ref="notices"/>
+  </phrase>
+</phraseset>
+
+<!-- Main set of notices -->
+
+<phraseset id="notices">
+  <phrase>
+    Please note, to ensure a timely departure, train doors will be locked shut up to 40
+    seconds before departure. Thank you.
+  </phrase>
+  <phrase>
+    For your safety and comfort, this station operates a no-smoking policy.
+  </phrase>
+  <phrase>
+    Smoking is not permitted at this station.
+  </phrase>
+  <phrase>
+    All of our trains and stations are no-smoking areas. Please do not smoke until you
+    have left the station premesis.
+  </phrase>
+  <phrase>
+    24 hour C.C.T.V. recording is in operation at this station for the purpose of security
+    and safety management.
+  </phrase>
+  <phrase>
+    Closed circuit television and remote video monitoring is in use at this station for
+    your personal safety and security.
+  </phrase>
+  <phrase>
+    Please do not leave your personal belongings unattended on the station. Any personal
+    belongings left unattended may be removed without warning, or destroyed or damaged by
+    the security services.
+  </phrase>
+  <phrase>
+    Please do not leave your luggage unattended on the station. Luggage left unattended
+    may be removed without warning, or destroyed or damaged by the security services.
+  </phrase>
+  <phrase>
+    Penalty fares apply across the entire <service/> network. Please ensure that you buy
+    your ticket before you board, where facilities are available.
+  </phrase>
+  <phrase>
+    This is a security message. If you see something that doesn't look right, speak to
+    staff or text the British Transport Police on 61016. We'll sort it. See it, say it,
+    sorted.
+  </phrase>
+  <phrase>
+    This is a safety announcement. Please take care when using the escalators located on
+    this station. If you have luggage or a bicycle, then please use the passenger lifts
+    and ask for assistance if you need it. Thank you.
+  </phrase>
+  <phrase>
+    In the interests of safety, the riding of skateboards, rollerblades, and cycles on
+    this station are prohibited. Offenders may be prosecuted under the railway bylaw
+    number 30.
+  </phrase>
+</phraseset>
+
+<!-- Various parts of other phrases -->
+
+<phrase id="attention_please">
+  May I have your attention please.
+</phrase>
+
+<phrase id="attention_please_platform">
+  May I have your attention please on platform <platform/>.
+</phrase>
+
+<phraseset id="platform_wait_intro">
+  <phrase>
+    <phrase ref="platform_wait"/>.
+  </phrase>
+  <phrase>
+    The next train to <phraseset ref="depart_arrive"/> platform <platform/> will be
+    <phrase ref="service_to"/>.
+  </phrase>
+  <phrase>
+    The train now approaching platform <platform/> is <phrase ref="service_to"/>.
+    <phrase ref="service_from" chance="50"/>
+  </phrase>
+</phraseset>
+
+<phrase id="platform_wait">
+  Platform <platform/> for the <phrase ref="service"/> to <phrase ref="destination"/>
+</phrase>
+
+<phrase id="platform_wait_end">
+  <phrase ref="platform_wait"/>.
+</phrase>
+
+<phrase id="destination">
+  <station context="destination"/>
+  <optional chance="10">via <station context="via"/></optional>
+  <optional chance="5">
+    and <station context="destination2"/>
+    <optional chance="10">via <station context="via2"/></optional>
+  </optional>
+</phrase>
+
+<phrase id="service_to">
+  the <optional chance="5">delayed</optional> <phrase ref="service"/> to
+  <phrase ref="destination"/>
+</phrase>
+
+<phrase id="service">
+  <optional chance="5"><named />, the</optional> <time/>
+  <optional chance="90"><service/></optional> service
+</phrase>
+
+<phrase id="service_from">
+  This is the service from <station context="source"/>.
+</phrase>
+
+<phraseset id="calling_at">
+  <phrase>Calling at <stationlist id="calling"/>.</phrase>
+  <phrase>
+    For <stationlist id="calling_half1"/>, travel in the front <integer min="2" max="5"/>
+    coaches of the train. And for <stationlist id="calling_half2"/>, travel in the rear
+    <integer min="2" max="5"/> coaches of the train.
+  </phrase>
+</phraseset>
+
+<phraseset id="mind_the_gap">
+  <phrase>
+    Mind the gap between the train and the platform. Mind the gap.
+  </phrase>
+  <phrase>
+    When boarding the train, please mind the gap between the train and the platform edge.
+  </phrase>
+</phraseset>
+
+<phraseset id="apology_begin">
+  <phrase>We are sorry to announce that the</phrase>
+  <phrase>We are sorry that the</phrase>
+</phraseset>
+
+<phraseset id="delayed_or_cancelled">
+  <phrase>
+    is delayed
+    <optional>
+      by approximately <integer min="5" max="120" plural="minutes"/>
+    </optional><phraseset ref="excuse_or_wait" chance="50"/>.
+    <phraseset ref="service_apology_delay" chance="50"/>
+  </phrase>
+  <phrase>
+    has been cancelled <phraseset ref="excuse_or_wait" chance="50"/>.
+    <phraseset ref="service_apology" chance="50"/>
+  </phrase>
+</phraseset>
+
+<phraseset id="excuse_pre">
+  <phrase>, </phrase>
+  <phrase>. This is </phrase>
+</phraseset>
+
+<phrase id="excuse">
+  <phraseset ref="excuse_pre"/>due to <excuse/>
+  <optional> <phraseset ref="at_near"/> <station context="random"/></optional>
+</phrase>
+
+<phraseset id="excuse_or_wait">
+  <phrase><phrase ref="excuse"/></phrase>
+  <phrase>. Please listen for further announcements</phrase>
+</phraseset>
+
+<phraseset id="general_apology_delay">
+  <phrase>National Rail apologises for this delay.</phrase>
+  <phrase>We apologise for the inconvenience this may cause you.</phrase>
+</phraseset>
+
+<phraseset id="service_apology_delay">
+  <phrase><service/> apologises for this delay.</phrase>
+  <phrase><phraseset ref="general_apology_delay"/></phrase>
+  <phrase><phraseset ref="service_apology"/></phrase>
+</phraseset>
+
+<phraseset id="service_apology">
+  <phrase>We apologise for the inconvenience this may cause you.</phrase>
+  <phrase>We apologise for the disruption to your journey today.</phrase>
+  <phrase><service/> apologises for the disruption to your journey today.</phrase>
+</phraseset>
+
+<phraseset id="change_at">
+  <phrase>
+    Customers for <stationlist id="changes" max="4"/> should change at
+    <station context="calling"/>.
+  </phrase>
+  <phrase>
+    Change at <station context="calling"/> for the services to
+    <stationlist id="changes" max="4"/>.
+  </phrase>
+</phraseset>
+
+<phrase id="not_stopping">
+  This train will not be calling at <stationlist id="not_stopping" max="8"/> today
+  <phrase ref="excuse"/>.
+</phrase>
+
+<phraseset id="request_stop">
+  <phrase>
+    <station context="calling"/> is a request stop, and passengers for this station should
+    ask the conductor on the train to arrange for the train to stop, to allow them to
+    <phraseset ref="leave"/>.
+  </phrase>
+  <phrase>
+    <stationlist id="request"/> are request stops, and passengers for these stations
+    should ask the conductor on the train to arrange for the train to stop, to allow them
+    to <phraseset ref="leave"/>.
+  </phrase>
+</phraseset>
+
+<phraseset id="trolley_service">
+  <phrase>
+    A trolley service of drinks and light refreshments is available on this train.
+  </phrase>
+  <phrase>
+    An at-seat service of light refreshments is available on the train.
+  </phrase>
+</phraseset>
+
+<phrase id="coach_count">
+  <phraseset ref="coach_count_pre"/>
+  <integer min="1" max="10" singular="coach" plural="coaches" words="true"/>.
+</phrase>
+
+<phraseset id="coach_count_pre">
+  <phrase>This train is formed of</phrase>
+  <phrase>This train has</phrase>
+</phraseset>
+
+<phraseset id="shop_service">
+  <phrase>
+    You can find the shop in coach <coach/> for delicious hot and cold refreshments.
+  </phrase>
+</phraseset>
+
+<phrase id="train_full">
+  Please note this train is full and standing. Please allow all customers to leave the
+  train before boarding.
+</phrase>
+
+<phraseset id="train_layout">
+  <phrase>
+    First class is at the <phraseset ref="front_rear"/> of the train.
+  </phrase>
+  <phrase>
+    First class is at the <phraseset ref="front_rear"/>, standard class is at
+    the middle and <phraseset ref="front_rear" op="cycle"/>, bicycle spaces are at the
+    very <phraseset ref="front_rear" op="repeat"/>.
+    <phrase ref="bike_booking" chance="50"/>
+  </phrase>
+  <phrase>
+    First class is available at the <phraseset ref="front_rear"/> of the train as it
+    arrives at the station. This will be at the <phraseset ref="front_rear" op="cycle"/>
+    of the train as it departs.
+  </phrase>
+  <phrase>
+    First class coaches can be found at the <phraseset ref="front_rear"/> of the train,
+    standard can be found at the <phraseset ref="front_rear" op="cycle"/>.
+  </phrase>
+</phraseset>
+
+<phraseset id="train_seating">
+  <phrase>
+    Standard unreserved seating can be found in coaches <coach/> and <coach/>, with
+    First class unreserved seating in coach <coach/>.
+  </phrase>
+</phraseset>
+
+<phrase id="bike_booking">
+  Please be aware that you can only bring a bicycle on this service if you have booked
+  beforehand.
+</phrase>
+
+<!-- Common vocabulary collections -->
+
+<phraseset id="front_rear">
+  <phrase>front</phrase>
+  <phrase>rear</phrase>
+</phraseset>
+
+<phraseset id="leave">
+  <phrase>leave</phrase>
+  <phrase>alight</phrase>
+</phraseset>
+
+<phraseset id="depart_arrive">
+  <phrase>depart from</phrase>
+  <phrase>arrive at</phrase>
+</phraseset>
+
+<phraseset id="destination_from_to">
+  <phrase>to <phrase ref="destination"/></phrase>
+  <phrase>from <station context="source"/></phrase>
+</phraseset>
+
+<phraseset id="at_near">
+  <phrase>at</phrase>
+  <phrase>near</phrase>
+</phraseset>
+
+</messages>

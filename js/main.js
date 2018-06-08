@@ -1,125 +1,115 @@
 /**
- * Logic for Playlister.
- * Roy Curtis, MIT license, 2018
+ * Sleep charter, main program
+ * Roy Curtis, MIT license, 2017
  */
 
-// Global state and DOM references
+/*
+ * Global state
+ */
 
-var form          = document.querySelector('form');
-var goBtn         = document.querySelector('#go');
-var autodeleteBox = document.querySelector('#autodelete');
-var luckyBox      = document.querySelector('#lucky');
-var searchList    = document.querySelector('#search-list');
-var entryList     = document.querySelector('#entry-list');
-var editing       = true;
+/** Global container for DOM element references */
+var DOM = {
+    /** @type HTMLElement */
+    sleepChart: null,
+    /** @type HTMLElement */
+    timeAxis:   null,
+    /** @type HTMLElement */
+    alertBox:   null,
+    /** @type DayBars */
+    dayBars:    {},
+    /** @type SleepBar[] */
+    sleepBars:  []
+};
 
-// Load state from storage
+/** Global container for program state */
+var STATE = {
+    /**
+     * Array of sleep events, processed from an external CSV file
+     *
+     * @type Array.<SleepEvent>
+     */
+    entries: [],
 
-searchList.value      = localStorage['searchList']    || '';
-autodeleteBox.checked = localStorage['autodeleteBox'] === 'true';
-luckyBox.checked      = localStorage['luckyBox']      !== 'false';
+    /** Current progress of chart's rescaling process */
+    rescaleIdx: 0,
 
-// Global functions
+    /** Whether or not a rescale is in progress */
+    rescaling: false,
 
-/** Saves data (e.g. entry list, checkboxes) to storage */
-function saveState()
+    /**
+     * Currently selected (e.g. hovered over) sleep bar
+     *
+     * @type SleepBar
+     */
+    selected: null
+};
+
+/*
+ * Program logic
+ */
+
+function main(file, selector)
 {
-    localStorage['searchList']    = searchList.value.trim();
-    localStorage['autodeleteBox'] = autodeleteBox.checked;
-    localStorage['luckyBox']      = luckyBox.checked;
+    DOM.sleepChart = document.querySelector(selector);
+
+    if (DOM.sleepChart === null)
+        throw new Error("No element found with given selector: " + selector);
+
+    fetch(file)
+        .then(processResponse)
+        .then(processData)
+        .then(processDOM)
+        .then(finalize)
+        .catch(processError);
 }
 
-/** Converts user-inputted list of search terms into an interactive list */
-function search2EntryList()
+function processResponse(response)
 {
-    var entries = searchList.value.trim().split('\n');
-
-    // Clear existing entries
-    entryList.innerHTML = '';
-
-    // Generate an OPTION element for each search term entry
-    entries.forEach(function(v)
-    {
-        var opt = document.createElement("option");
-
-        opt.value     = v;
-        opt.innerText = v;
-
-        entryList.add(opt);
-    });
-}
-
-/** Converts the interactive list back to an editable list of search terms */
-function entry2SearchList()
-{
-    var entries = entryList.children;
-
-    // Clear existing entries
-    searchList.value = '';
-
-    for (var i = 0; i < entries.length; i++)
-        searchList.value += entries[i].innerText + '\n';
-
-    // Persist data to storage, in case an entry was auto-deleted
-    saveState();
-}
-
-/** Opens the selected entry as a Google search in a new tab or window */
-function playEntry(e)
-{
-    if (e.target.nodeName.toLowerCase() === 'option')
-    if (e.target.value)
-    {
-        var term  = encodeURIComponent(e.target.value);
-        var lucky = luckyBox.checked ? "&btnI=1" : "";
-
-        window.open("http://google.com/search?q=" + term + "+site%3Ayoutube.com" + lucky);
-
-        if (autodeleteBox.checked)
-        {
-            // Auto-select next entry on delete
-            entryList.selectedIndex += 1;
-            e.target.remove();
-            entry2SearchList();
-        }
-    }
-}
-
-// Event handlers
-
-goBtn.onclick = function()
-{
-    if (editing)
-    {
-        search2EntryList();
-        searchList.classList.add('hidden');
-        entryList.classList.remove('hidden');
-    }
+    if (!response.ok)
+        throw new Error("Response is not OK: " + response);
     else
+        return response.text();
+}
+
+/** Note: data comes from what processResponse returns, in the fetch promise chain */
+function processData(data)
+{
+    STATE.entries = parseCSV(data);
+    STATE.entries.sort(sortByFromTimes);
+
+    STATE.entries = predictEvents(STATE.entries);
+}
+
+function processDOM()
+{
+    DOM.sleepChart.onmouseover = onSleepChartMouseOver;
+    DOM.sleepChart.onwheel     = onSleepChartMouseWheel;
+    DOM.sleepChart.onclick     = onSleepChartClick;
+    document.body.onresize     = onSleepChartResize;
+
+    // Remove default error message
+    DOM.sleepChart.innerHTML = "";
+    DOM.sleepChart.classList.remove("nojs");
+
+    generateSleepBars();
+    generateAlertBox();
+    generateTimeAxis();
+}
+
+function finalize()
+{
+    console.log("Logging STATE and DOM globals. . .", STATE, DOM);
+    onSleepChartResize();
+}
+
+/** @param {Error} error */
+function processError(error)
+{
+    if (DOM.alertBox)
     {
-        entry2SearchList();
-        searchList.classList.remove('hidden');
-        entryList.classList.add('hidden');
+        DOM.alertBox.classList.remove("hidden");
+        DOM.alertBox.innerHTML = "Error: " + error.message;
     }
 
-    editing         = !editing;
-    goBtn.innerText = editing ? "Go!" : "Edit!";
-};
-
-// Handle ENTER key on selected element
-form.onsubmit = function(e)
-{
-    e.preventDefault();
-
-    var selected = entryList.selectedOptions;
-
-    if (selected.length === 0)
-        return;
-
-    playEntry({ target: selected[0] });
-};
-
-entryList.ondblclick   = playEntry;
-searchList.oninput     = saveState;
-luckyBox.onchange      = saveState;
-autodeleteBox.onchange = saveState;
+    console.error(error);
+}

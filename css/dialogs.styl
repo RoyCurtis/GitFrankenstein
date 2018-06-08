@@ -1,0 +1,89 @@
+/** Rail Announcements Generator. By Roy Curtis, MIT license, 2018 */
+
+.dialog
+  background    #111
+  border        8px solid #CC7E00
+  border-radius 4px
+  box-shadow    8px 8px 8px rgba(0, 0, 0, 0.5)
+  position      absolute
+  z-index       100
+
+  > header
+    background     #CC7E00
+    font-weight    bold
+    padding-bottom 4px
+
+  &.fullWidth
+    width  100%
+    height 50%
+
+#platformPicker, #timePicker
+  form
+    display flex
+
+    input, select
+      border    none
+      flex-grow 1
+      font-size x-large
+      padding   0 4px
+
+#namedPicker, #servicePicker
+  display   flex
+  flex-flow column
+
+  form
+    overflow auto
+
+    .picker
+      display         flex
+      flex-wrap       wrap
+      justify-content space-between
+
+      option
+        cursor  pointer
+        padding 1em
+
+        &:hover,
+        &[selected]
+          background #CC7E00
+
+#stationPicker
+  display   flex
+  flex-flow column
+
+  form
+    display   flex
+    flex-flow column
+
+    input
+      background #111
+      border     none
+      color      inherit
+      font-size  inherit
+      padding    0.5em 1em
+      width      100%
+
+    .picker
+      overflow auto
+
+      dl
+        display   flex
+        flex-wrap wrap
+
+      dt
+        background  black
+        box-shadow  0 5px 10px rgba(0, 0, 0, 0.5)
+        font-weight bold
+        padding     0.5em 1em
+        position    sticky
+        top         0
+        width       100%
+
+      dd
+        cursor  pointer
+        padding 1em
+
+        &:hover,
+        &[selected]
+          background #CC7E00
+

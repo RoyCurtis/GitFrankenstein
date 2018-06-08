@@ -1,527 +1,437 @@
-/**
- * Gamealition CSS theme by Roy Curtis, 2015
- * Uses colors and gradients from the PBTech phpBB theme
- * See: https://www.phpbb.com/customise/db/style/pbtech/
- */
-
-/*<editor-fold desc="CSS reset">*/
-body, html
-{
-    width:       100%;
-    height:      100%;
-    font-family: 'Cabin Condensed', 'Arial Narrow', sans-serif;
-    font-size:   20px;
-    font-weight: 400;
-    background:  #D3D1CE;
-    color:       #656565;
+/** Sign '☮' The Times. By Roy Curtis, MIT license, 2018 */
+.triangle-edge {
+  animation: triangle-bg-blink 2s steps(1) 1.5s infinite;
 }
-
-*
-{
-    padding:    0;
-    margin:     0;
-    box-sizing: border-box;
+.triangle-edge.north > triangle {
+  animation: triangle-blink 2s steps(1) 0s infinite;
 }
-/*</editor-fold>*/
-
-/*<editor-fold desc="General classes">*/
-/* http://stackoverflow.com/a/4407335/3354920 */
-.noselect
-{
-    -webkit-touch-callout: none;
-    -webkit-user-select:   none;
-    -moz-user-select:      none;
-    -ms-user-select:       none;
-    user-select:           none;
+.triangle-edge.east > triangle {
+  animation: triangle-blink 2s steps(1) 0.5s infinite;
 }
-/*</editor-fold>*/
-
-/*<editor-fold desc="General structure">*/
-body > *
-{
-    width:    100%;
-    overflow: hidden;
+.triangle-edge.south > triangle {
+  animation: triangle-blink 2s steps(1) 1s infinite;
 }
-/*</editor-fold>*/
-
-/*<editor-fold desc="Header structure">*/
-body > header
-{
-    background: #000000 url('../img/header-bg.jpg') repeat-x center 0;
+.triangle-edge.west > triangle {
+  animation: triangle-blink 2s steps(1) 1.5s infinite;
 }
-
-body > header > div.logo
-{
-    padding:   16px;
-    height:    130px;
-    max-width: 920px;
-    margin:    0 auto;
+.o {
+  animation: o-grow 9.5s ease-out 0s 1 normal forwards, o-glow 2s steps(1) 0s infinite normal forwards, appear-disappear 1s linear 12s reverse forwards;
 }
-
-body > header > div.nav
-{
-    background: url('../img/header-bar.png') repeat-x center bottom;
+.yeah {
+  animation: yeah-zoom 1s linear 9.75s forwards;
 }
-/*</editor-fold>*/
-
-/*<editor-fold desc="Animated logo">*/
-logo
-{
-    display: block;
-    width:   92px;
-    height:  92px;
-    margin:  0 auto;
+.purple-grid td.middle {
+  animation: close-open 5.75s linear 12s forwards;
 }
-
-logo > h1
-{
-    display: none;
+.purple-grid td.corner {
+  animation: close-open-half 5.75s linear 12s forwards reverse;
 }
-
-logo > img
-{
-    position: absolute;
-    width:    92px;
+.triangle-zoom triangle {
+  animation: triangle-zoom 5s ease-out 18.75s forwards;
 }
-
-logo > img:nth-child(2)
-{
-    animation-iteration-count: infinite;
-    animation-duration:        5s;
-    animation-name:            pulse;
-    animation-direction:       alternate;
+.heart-zoom div {
+  animation: heart-zoom 5.2s ease-out 23.75s forwards;
 }
-
-@keyframes pulse
-{
-    from { opacity: 0.75; }
-    to   { opacity: 0; }
+.disease-scene {
+  animation: appear-disappear 0s 28.95s forwards;
 }
-/*</editor-fold>*/
-
-/*<editor-fold desc="Navigation menu">*/
-div.nav
-{
-    height: 40px;
+.disease-scene span:nth-child(1) {
+  animation: lyric-zoom 0.6s ease-out 28.65s forwards;
 }
-
-div.nav > container
-{
-    display:     flex;
-    flex-flow:   row;
-    max-width:   920px;
-    margin:      0 auto;
-    align-items: center;
+.disease-scene span:nth-child(2) {
+  animation: lyric-zoom 0.6s ease-out 28.95s forwards;
 }
-
-div.nav menu
-{
-    background:    rgba(0, 0, 0, 0.5);
-    border-radius: 5px;
-    display:       flex;
-    flex-flow:     row;
-    flex-grow:     1;
-    height:        28px;
+.disease-scene span:nth-child(3) {
+  animation: lyric-zoom 0.6s ease-out 29.25s forwards;
 }
-
-div.nav menu.social
-{
-    flex-grow:       0;
-    margin-left:     1em;
-    justify-content: center;
+.disease-scene span:nth-child(4) {
+  animation: lyric-zoom 0.6s ease-out 29.55s forwards;
 }
-
-div.nav menu > *
-{
-    flex-grow:  1;
-    padding:    2px;
-    text-align: center;
+.disease-scene span:nth-child(5) {
+  animation: lyric-zoom 0.6s ease-out 29.849999999999998s forwards;
 }
-
-div.nav menu > a
-{
-    color:           #9DBECB;
-    fill:            #9DBECB;
-    text-decoration: none;
+.disease-scene span:nth-child(6) {
+  animation: lyric-zoom 0.6s ease-out 30.15s forwards;
 }
-
-div.nav menu > a.icon
-{
-    width:     48px;
-    flex-grow: 0;
+.disease-scene span:nth-child(7) {
+  animation: lyric-zoom 0.6s ease-out 30.45s forwards;
 }
-
-div.nav menu > a.icon svg
-{
-    width:  24px;
-    height: 24px;
+.disease-scene span:nth-child(8) {
+  animation: lyric-zoom 0.6s ease-out 30.75s forwards;
 }
-
-div.nav menu > a:hover
-{
-    color: white;
-    fill:  white;
+.disease-scene span:nth-child(9) {
+  animation: lyric-zoom 0.6s ease-out 31.049999999999997s forwards;
 }
-/*</editor-fold>*/
-
-/*<editor-fold desc="Body sections">*/
-body > section
-{
-    margin:         16px 0;
-    display:        flex;
-    flex-direction: column;
-    align-items:    center;
+.disease-scene span:nth-child(10) {
+  animation: lyric-zoom 0.6s ease-out 31.349999999999998s forwards;
 }
-
-body > section > container
-{
-    display:     flex;
-    align-items: center;
-    width:       100%;
-    max-width:   920px;
+.disease-scene span:nth-child(11) {
+  animation: lyric-zoom 0.6s ease-out 31.65s forwards;
 }
-
-body > section > container > section h1
-{
-    color:       #333232;
-    font-size:   xx-large;
-    text-shadow: 0 1px white;
+.disease-scene span:nth-child(12) {
+  animation: lyric-zoom 0.6s ease-out 31.95s forwards;
 }
-
-body > section > container > section p
-{
-    padding-top: 16px;
+.disease-scene span:nth-child(13) {
+  animation: lyric-zoom 0.6s ease-out 32.25s forwards;
 }
-
-body > section > container > section.blurb
-{
-    padding:    16px;
-    flex-basis: 60%;
+.disease-scene span:nth-child(14) {
+  animation: lyric-zoom 0.6s ease-out 32.55s forwards;
 }
-
-body > section > container > section.links
-{
-    margin-left: 1em;
-    flex-basis:  40%;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+.disease-scene span:nth-child(15) {
+  animation: lyric-zoom 0.6s ease-out 32.85s forwards;
 }
-
-body > section > container entry
-{
-    display:     flex;
-    align-items: center;
+.disease-scene span:nth-child(16) {
+  animation: lyric-zoom 0.6s ease-out 33.15s forwards;
 }
-
-body > section > container field
-{
-    color: #7A7A7A;
+.disease-scene span:nth-child(17) {
+  animation: lyric-zoom 0.6s ease-out 33.45s forwards;
 }
-
-body > section > container value
-{
-    text-align:  right;
-    font-family: 'Consolas', monospace;
-    font-size:   medium;
-    flex-grow:   1;
+.disease-scene span:nth-child(18) {
+  animation: lyric-zoom 0.6s ease-out 33.75s forwards;
 }
-
-body > section > container entry.address
-{
-    background: #0081B4;
-    background: linear-gradient(rgba(0, 129, 180, 1), rgba(0, 106, 155, 1));
-    box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2);
-    color:      white;
-    padding:    4px 8px;
+.disease-scene span:nth-child(19) {
+  animation: lyric-zoom 0.6s ease-out 34.05s forwards;
 }
-
-body > section > container entry.address field
-{
-    color: white;
+.disease-scene span:nth-child(20) {
+  animation: lyric-zoom 0.6s ease-out 34.35s forwards;
 }
-
-body > section > container menu
-{
-    display:   flex;
-    flex-wrap: wrap;
+.disease-scene span:nth-child(21) {
+  animation: lyric-zoom 0.6s ease-out 34.65s forwards;
 }
-
-body > section > container menu > a
-{
-    padding:         8px;
-    text-align:      center;
-    text-decoration: none;
-    text-transform:  uppercase;
-    display:         inline-block;
-    font-weight:     bold;
-    background:      #E5E4E3;
-    color:           #074E79;
-    flex-basis:      40%;
-    flex-grow:       1;
+.disease-scene span:nth-child(22) {
+  animation: lyric-zoom 0.6s ease-out 34.95s forwards;
 }
-
-body > section > container menu > a:hover
-{
-    color:      #0295EE;
-    background: #FFFFFF;
+.disease-scene span:nth-child(23) {
+  animation: lyric-zoom 0.6s ease-out 35.25s forwards;
 }
-
-body > section > container menu > a:active
-{
-    background: ghostwhite;
-    color:      #00CCFF;
+.disease-scene span:nth-child(24) {
+  animation: lyric-zoom 0.6s ease-out 35.55s forwards;
 }
-
-body > section > container menu > a.third-party
-{
-    border-bottom: 3px #732E03 solid;
+.disease-scene span:nth-child(25) {
+  animation: lyric-zoom 0.6s ease-out 35.85s forwards;
 }
-
-body > section > container menu > a.third-party:hover
-{
-    border-bottom: 3px #F3A900 solid;
+.disease-scene span:nth-child(26) {
+  animation: lyric-zoom 0.6s ease-out 36.15s forwards;
 }
-
-body > section:last-of-type
-{
-    margin-bottom: 0;
+.disease-scene span:nth-child(27) {
+  animation: lyric-zoom 0.6s ease-out 36.45s forwards;
 }
-/*</editor-fold>*/
-
-/*<editor-fold desc="Intro section">*/
-body > section#Intro > container
-{
-    text-align: justify;
+.disease-scene span:nth-child(28) {
+  animation: lyric-zoom 0.6s ease-out 36.75s forwards;
 }
-
-body > section#Intro p
-{
-    flex-basis:  100%;
-    font-size:   22px;
-    color:       #878583;
-    text-shadow: 0 1px #EBE9E6;
+.disease-scene span:nth-child(29) {
+  animation: lyric-zoom 0.6s ease-out 37.05s forwards;
 }
-
-body > section#Intro .gamealition
-{
-    font-weight: 600;
-    color:       #00A0CD;
+.disease-scene span:nth-child(30) {
+  animation: lyric-zoom 0.6s ease-out 37.35s forwards;
 }
-
-body > section#Intro .ornament
-{
-    width:       32px;
-    color:       #AFADAA;
-    text-shadow: 0 1px #EBE9E6;
+.disease-scene span:nth-child(31) {
+  animation: lyric-zoom 0.6s ease-out 37.65s forwards;
 }
-
-body > section#Intro .ornament.right
-{
-    text-align: right;
+@keyframes triangle-blink {
+  0% {
+    border-color: #068bff transparent transparent transparent;
+  }
+  6% {
+    border-color: #000 transparent transparent transparent;
+  }
 }
-/*</editor-fold>*/
-
-/*<editor-fold desc="Footer section">*/
-body > footer
-{
-    background: #000000 url("../img/footer-bg.png") repeat-x center top;
-    min-height: 150px;
-    padding:    166px 16px 16px;
-    margin-top: 2em;
+@keyframes triangle-bg-blink {
+  0% {
+    background: #454545;
+  }
+  6% {
+    background: #ff3a70;
+  }
+  12% {
+    background: #454545;
+  }
 }
-
-body > footer > container p
-{
-    color:      #4A4A4A;
-    text-align: center;
-    font-size:  16px;
-    padding:    8px 0;
+@keyframes o-grow {
+  to {
+    font-size: 94vmin;
+  }
 }
-
-body > footer > container a
-{
-    color:           #9DBECB;
-    text-decoration: none;
+@keyframes o-glow {
+  0% {
+    text-shadow: 0 -2px #068bff;
+  }
+  6% {
+    text-shadow: none;
+  }
+  25% {
+    text-shadow: 2px 0 #068bff;
+  }
+  31% {
+    text-shadow: none;
+  }
+  50% {
+    text-shadow: 0 2px #068bff;
+  }
+  56% {
+    text-shadow: none;
+  }
+  75% {
+    text-shadow: -2px 0 #068bff;
+  }
+  81% {
+    text-shadow: none;
+  }
 }
-
-body > footer > container a:hover
-{
-    color: ghostwhite;
+@keyframes appear-disappear {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
-/*</editor-fold>*/
-
-/*<editor-fold desc="Warning box">*/
-/* http://www.multipetros.gr/posts/728-blink-elements-border-the-css-way/ */
-.warnbox
-{
-    text-align:    center;
-    margin-bottom: 0;
-    padding:       1em;
-    height:        150px;
+@keyframes yeah-zoom {
+  0% {
+    opacity: 1;
+    top: -80%;
+    font-size: 750vmin;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    top: 0;
+    opacity: 1;
+    font-size: 0;
+  }
 }
-
-.blink
-{
-    border:    5px solid red;
-    color:     white;
-    animation: blink .5s step-end infinite alternate;
+@keyframes close-open {
+  from {
+    width: 100%;
+    height: 100%;
+  }
+  to {
+    width: 0;
+    height: 0;
+  }
 }
-
-.blink a
-{ color: red; }
-
-.blink a:hover
-{ color: #FFAAAA; }
-
-@keyframes blink
-{
-    0%
-    { border-color: #000000; }
-    50%
-    { border-color: #FF0000; }
+@keyframes close-open-half {
+  from {
+    width: 50%;
+    height: 50%;
+  }
+  to {
+    width: 0;
+    height: 0;
+  }
 }
-/*</editor-fold>*/
-
-/*<editor-fold desc="Responsive design; 920px width">*/
-@media (max-width: 920px)
-{
-    body, html
-    {
-        font-size: 16px;
-    }
-
-    div.nav menu
-    {
-        font-size: 20px;
-    }
-
-    div.nav menu.community
-    {
-        border-radius: 0 5px 5px 0;
-    }
-
-    div.nav menu.social
-    {
-        border-radius: 5px 0 0 5px;
-    }
-
-    /* Intro section */
-    body > section#Intro p
-    {
-        font-size:     16px;
-        margin:        0 0.5em;
-        padding:       0.5em 0;
-        border-top:    4px double;
-        border-bottom: 4px double;
-    }
-
-    body > section#Intro .ornament
-    {
-        display: none;
-    }
-
-    /* Footer */
-    body > footer
-    {
-        background-size: 100%;
-        padding:         75px 16px 16px;
-    }
+@keyframes triangle-zoom {
+  from {
+    transform: scale(1.5) rotate(100deg);
+  }
+  to {
+    transform: scale(0) rotate(180deg);
+  }
 }
-/*</editor-fold>*/
-
-/*<editor-fold desc="Responsive design; 640px width">*/
-@media (max-width: 640px)
-{
-    /* Logo */
-    logo
-    {
-        width:  48px;
-        height: 48px;
-    }
-
-    logo > img
-    {
-        width: 48px;
-    }
-
-    body > header > div.logo
-    {
-        height: auto;
-    }
-
-    /* Header */
-    body > header
-    {
-        background: #000000 url('../img/header-bg.jpg') repeat-x center bottom;
-    }
-
-    /* Navigation menu */
-    body > header > div.nav
-    {
-        height:        auto;
-        background:    none;
-        border-bottom: 5px solid #E8E7E6;
-    }
-
-    div.nav > container
-    {
-        flex-wrap: wrap;
-    }
-
-    div.nav menu.community,
-    div.nav menu.social
-    {
-        border-radius: 0;
-        flex-basis:    100%;
-    }
-
-    div.nav menu.social
-    {
-        flex-grow:   1;
-        margin-left: 0;
-    }
-
-    div.nav menu > a.icon
-    {
-        flex-grow: 1;
-        width:     auto;
-    }
-
-    /* Sections */
-    body > section
-    {
-        margin: 0;
-    }
-
-    body > section > container
-    {
-        flex-wrap: wrap;
-    }
-
-    body > section > container > section
-    {
-        flex-grow: 1;
-    }
-
-    body > section > container > section.blurb,
-    body > section > container > section.links
-    {
-        flex-basis: 100%;
-    }
-
-    body > section > container > section.links
-    {
-        margin: 0;
-    }
-
-    body > section > container menu > a
-    {
-        flex-basis: auto;
-    }
-
-    /* Footer */
-    body > footer
-    {
-        padding: 50px 16px 16px;
-    }
+@keyframes heart-zoom {
+  from {
+    transform: scale(1) rotate(-45deg);
+  }
+  to {
+    transform: scale(0) rotate(0deg);
+  }
 }
-/*</editor-fold>*/
+@keyframes lyric-zoom {
+  from {
+    font-size: 40vmin;
+  }
+  to {
+    font-size: 0;
+  }
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body,
+html {
+  background: #000;
+  font-family: "Times New Roman", serif;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+.triangle-edge {
+  background: #454545;
+  display: flex;
+  z-index: 100;
+}
+.triangle-edge > triangle {
+  border-style: solid;
+  border-width: 6vmax 3vmax 0 3vmax;
+  border-color: #000 transparent transparent transparent;
+  width: 6vmax;
+  height: 6vmax;
+}
+.triangle-edge.north,
+.triangle-edge.south {
+  position: absolute;
+  width: 100%;
+  height: 6vmax;
+  left: 0;
+  justify-content: center;
+}
+.triangle-edge.west,
+.triangle-edge.east {
+  position: absolute;
+  width: 6vmax;
+  height: 100%;
+  align-items: center;
+  top: 0;
+}
+.triangle-edge.north {
+  top: 0;
+}
+.triangle-edge.south {
+  bottom: 0;
+  transform: rotate(180deg);
+}
+.triangle-edge.west {
+  left: 0;
+}
+.triangle-edge.west > triangle {
+  transform: rotate(270deg);
+}
+.triangle-edge.east {
+  right: 0;
+}
+.triangle-edge.east > triangle {
+  transform: rotate(90deg);
+}
+.o {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 0;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  color: #5c5c5c;
+  font-size: 12vmin;
+}
+.yeah {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  color: #bf6060;
+  position: absolute;
+  top: -80%;
+  left: 5%;
+  font-size: 0;
+  justify-content: center;
+  align-items: center;
+}
+.purple-grid {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 0;
+}
+.purple-grid td {
+  border: 1px solid #6f2878;
+  width: 0;
+  height: 0;
+}
+.purple-grid td.middle {
+  width: 100%;
+  height: 100%;
+}
+.triangle-zoom {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 0;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+}
+.triangle-zoom triangle {
+  border-style: solid;
+  border-width: 150vmax 75vmax 0 75vmax;
+  border-color: #fbc37c transparent transparent transparent;
+  width: 150vmax;
+  height: 150vmax;
+  transform: scale(0);
+}
+.heart-zoom {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 0;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+}
+.heart-zoom div {
+  transform: scale(0);
+}
+.heart-zoom heart {
+  background-color: #ff2090;
+  display: block;
+  transform: rotate(-45deg);
+  width: 100vmax;
+  height: 100vmax;
+}
+.heart-zoom heart:before,
+.heart-zoom heart:after {
+  content: "";
+  background-color: #ff2090;
+  border-radius: 50%;
+  position: absolute;
+  width: 100vmax;
+  height: 100vmax;
+}
+.heart-zoom heart:before {
+  top: -50vmax;
+  left: 0;
+}
+.heart-zoom heart:after {
+  top: 0;
+  left: 50vmax;
+}
+.disease-scene {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 0;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  background: #fff;
+  opacity: 0;
+}
+.disease-scene .peach-square {
+  background: #ffba8b;
+  width: 2vmax;
+  height: 2vmax;
+}
+.disease-scene span {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 0;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  font-size: 0;
+}
+/*# sourceMappingURL=css/index.css.map */
