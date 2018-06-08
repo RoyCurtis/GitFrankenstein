@@ -1,7 +1,18 @@
-All original art assets in this repository are available for others to learn from, make use of, remix or otherwise *but only for* non-commercial use. This is to protect the Gamealition brand.
+**Playlister** is a rudimentary tool, that turns a copy-pasted list of search terms (e.g.
+list of artist - title entries) into a YouTube playlist of sorts.
 
-They are kept separate from other repositories because of their file sizes.
+Made for players of "The Chain" game on the Kristi Kates subscriber discord ❤
 
-Some content is unavailable because they derive from differently licensed assets.
+# Usage
 
-Only FOSS tools were used in the making of these assets, including [GIMP](http://www.gimp.org/) and [Inkscape](https://inkscape.org/en/).
+[![Demo of Playlister's usage](https://thumbs.gfycat.com/BothKlutzyGlassfrog-size_restricted.gif)](https://gfycat.com/BothKlutzyGlassfrog)
+
+1. Copy and paste a list of search terms into Playlister
+1. Click "Go!"
+1. Double-click any of the entries to open them in YouTube
+1. Click "Edit!" to edit the list
+
+If you'd prefer it to not automatically go to the first YouTube search result, uncheck
+_Automatically go to first search result ("I'm Feeling Lucky")_.
+
+Some entries do not automatically go to the first result anyway. I don't know why.

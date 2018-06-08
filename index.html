@@ -1,0 +1,48 @@
+<!doctype html>
+<!-- Roy Curtis, MIT license, 2018 -->
+<html>
+<head>
+  <meta charset="utf-8">
+
+  <title>Playlister</title>
+  <meta name="description" content="Converts a list of entries into a playlist">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="css/main.css">
+</head>
+
+<body>
+<form>
+
+  <div class="checkboxes">
+    <label id="lucky-field">
+      <input id="lucky" type="checkbox" checked />
+      Automatically go to first search result ("I'm Feeling Lucky")
+    </label>
+
+    <label id="autodelete-field">
+      <input id="autodelete" type="checkbox" />
+      Automatically delete entry on play
+    </label>
+  </div>
+
+  <button id="go" type="button">Go!</button>
+  <button id="submit" type="submit" hidden>Play entry</button>
+
+  <select id="entry-list" size="4" class="hidden"
+          title="List of playlist entries. Double-click to play in new window/tab.">
+  </select>
+
+  <textarea id="search-list"
+            title="List of YouTube search terms"
+            placeholder="Copy and paste the list of search terms you want here, then click 'Go!'">
+    Is javascript disabled?
+  </textarea>
+
+</form>
+</body>
+
+<scripts>
+  <script src="js/main.js"></script>
+</scripts>
+</html>

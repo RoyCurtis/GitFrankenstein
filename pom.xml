@@ -6,37 +6,76 @@
 
     <!-- Project metadata -->
 
-    <groupId>roycurtis.testdummy</groupId>
-    <artifactId>TestDummy</artifactId>
-    <version>1.0.0</version>
+    <groupId>roycurtis.jdiscordirc</groupId>
+    <artifactId>JDiscordIRC</artifactId>
+    <version>0.0.4</version>
 
     <description>
-        For testing Spigot/Bukkit changes
+        Bridges chat between Discord and IRC channels
     </description>
+
+    <licenses>
+        <license>
+            <name>MIT</name>
+            <url>http://opensource.org/licenses/MIT</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <name>Roy Curtis</name>
+            <email>roy.adrian.curtis+github@gmail.com</email>
+            <url>https://github.com/RoyCurtis/</url>
+        </developer>
+    </developers>
 
     <!-- Project dependencies -->
 
     <repositories>
-        <!-- For spigot/bukkit/craftbukkit snapshots -->
+        <!-- For JDA -->
         <repository>
-            <id>spigot-snapshots</id>
-            <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
+            <id>jcenter</id>
+            <url>http://jcenter.bintray.com</url>
         </repository>
     </repositories>
 
     <dependencies>
-        <!-- Spigot + Bukkit API -->
+        <!-- Java Discord API -->
         <dependency>
-            <groupId>org.spigotmc</groupId>
-            <artifactId>spigot-api</artifactId>
-            <version>1.11-R0.1-SNAPSHOT</version>
+            <groupId>net.dv8tion</groupId>
+            <artifactId>JDA</artifactId>
+            <version>3.0.0_175</version>
+        </dependency>
+        <!-- PircBotX IRC library -->
+        <dependency>
+            <groupId>org.pircbotx</groupId>
+            <artifactId>pircbotx</artifactId>
+            <version>2.1</version>
+        </dependency>
+        <!-- Emoji library -->
+        <dependency>
+            <groupId>com.vdurmont</groupId>
+            <artifactId>emoji-java</artifactId>
+            <version>3.2.0</version>
+        </dependency>
+        <!-- Simple Logging Facade API and implementation -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <version>1.7.25</version>
         </dependency>
     </dependencies>
 
     <!-- Project settings -->
 
+    <!-- Enforce Unicode when compiling Java -->
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
     <build>
-        <!-- Replaces tokens like "${project.version}" in plugin.yml -->
+        <!-- Replaces tokens like "${project.version}" in resource files -->
         <resources>
             <resource>
                 <directory>src/main/resources</directory>
@@ -44,8 +83,8 @@
             </resource>
         </resources>
 
-        <!-- Specifies minimum Java version for compile and runtime -->
         <plugins>
+            <!-- Specifies minimum Java version and Unicode for compile and runtime -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -53,6 +92,72 @@
                 <configuration>
                     <source>1.8</source>
                     <target>1.8</target>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                </configuration>
+            </plugin>
+
+            <!-- Ensure resource files are processed as Unicode -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>3.0.1</version>
+                <configuration>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                </configuration>
+            </plugin>
+
+            <!-- Shades required libraries into built JAR -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>3.0.0</version>
+                <configuration>
+                    <!-- Disable auto generation of dependency-reduced-pom.xml -->
+                    <createDependencyReducedPom>false</createDependencyReducedPom>
+                </configuration>
+
+                <!-- Perform shading for package phase -->
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+
+                        <configuration>
+                            <!-- Exclude JNA library (not needed) -->
+                            <artifactSet>
+                                <excludes>
+                                    <exclude>net.java.dev.jna:jna</exclude>
+                                </excludes>
+                            </artifactSet>
+
+                            <!-- Exclude Opus natives (not needed) -->
+                            <filters>
+                                <filter>
+                                    <artifact>net.dv8tion:JDA</artifact>
+                                    <excludes>
+                                        <exclude>natives/**</exclude>
+                                        <exclude>tomp2p/opuswrapper/**</exclude>
+                                    </excludes>
+                                </filter>
+                            </filters>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- Makes built JAR executable -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.0.2</version>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <mainClass>roycurtis.jdiscordirc.JDiscordIRC</mainClass>
+                        </manifest>
+                    </archive>
                 </configuration>
             </plugin>
         </plugins>

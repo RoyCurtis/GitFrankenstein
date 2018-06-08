@@ -1,0 +1,106 @@
+/**
+ * CSS styles for Playlister.
+ * Roy Curtis, MIT license, 2018
+ */
+
+/* CSS reset */
+
+html, body
+{
+    background:  #3C3F41;
+    color:       whitesmoke;
+    font-family: sans-serif;
+    width:       100%;
+    height:      100%;
+}
+
+*
+{
+    margin:     0;
+    padding:    0;
+    box-sizing: border-box;
+}
+
+/* Classes */
+
+.hidden
+{
+    display: none;
+}
+
+/* Sections */
+
+body > form
+{
+    display:        flex;
+    flex-direction: column;
+    width:          100%;
+    height:         100%;
+}
+
+#search-list,
+#entry-list
+{
+    background:    #2B2B2B;
+    border:        none;
+    border-bottom: 2px solid #4B4B4B;
+    color:         whitesmoke;
+}
+
+#search-list
+{
+    flex-grow: 1;
+    padding:   0.5em;
+    resize:    none;
+}
+
+#search-list::placeholder
+{
+    color:      #AAAAAA;
+    font-style: italic;
+}
+
+#entry-list
+{
+    border:    none;
+    flex-grow: 1;
+}
+
+#entry-list option
+{
+    padding: 0.25em 0.5em;
+}
+
+#entry-list option:first-child
+{
+    padding-top: 0.5em;
+}
+
+.checkboxes
+{
+    display:   flex;
+    flex-wrap: wrap;
+}
+
+#lucky-field,
+#autodelete-field
+{
+    cursor:     pointer;
+    flex-grow:  1;
+    padding:    0.5em;
+    text-align: center;
+}
+
+#lucky-field:hover,
+#autodelete-field:hover
+{
+    background: #4B6EAF;
+}
+
+#go
+{
+    cursor:      pointer;
+    font-size:   xx-large;
+    font-weight: bold;
+    padding:     0.1em;
+}
