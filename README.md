@@ -1,22 +1,60 @@
-Welcome to **GitFrankenstein**. This is my attempt at better understanding Git; by trying
-to octopus-merge all my repositories at various points in their history, into one franken
-repository.
+**ASE2GPL** is a Python-Fu plugin for GIMP 2.8, that imports Adobe Swatch Exchange (ASE)
+palette files by converting them into GIMP'S GPL format. The converted palette is
+automatically added to the user's GIMP palette library.
 
-As inspired by https://www.destroyallsoftware.com/blog/2017/the-biggest-and-weirdest-commits-in-linux-kernel-git-history
+[This script was originally written in 2008 by Chris Mohler for Kuler's palette 
+exports][ORIGINAL]. It was updated by Roy Curtis in 2018 [after an issue report on reddit
+by /u/Adderbox76][REDDIT].
 
-# Process
+This plugin allows ASE palettes exported from [Adobe's Color Creative Cloud (formerly
+Kuler)][KULER] to be converted to GPL files and imported into GIMP.
 
-*Values used are examples. I mix some up, e.g. amount of commit rewinds from `HEAD`*
+# Installation
 
-1. `git fetch --progress "../ASE2GIMP" master:ase2gimp` - Fetches the history of another
-local repository, but renames its master branch to its own repo name.
-1. `git checkout --force ase2gimp` - Switch to that fetched repository
-1. `git reset --mixed HEAD~2` - Rewind the repository back by 2 commits
-1. Repeat steps 1-3 for other repositories
-1. `git checkout --force master` - Switch back to master (root)
-1. `git merge --allow-unrelated-histories ase2gimp Pinhead` - Merge the multiple repositories into one
-1. `git read-tree ase2gimp Pinhead` - Actually stages the files and changes of the merges (for some reason, [they don't appear without this step][1])
-1. Use a GUI, such as Git Extensions, to resolve any merge conflicts
-1. Commit!
+Simply save `ASE2GPL.py` into your local GIMP's `plug-ins` folder:
 
-[1]: https://stackoverflow.com/a/31186732/3354920
+* Windows: `%USERPROFILE%\.gimp-2.8\plug-ins`
+* Linux: `$HOME/.gimp-2.8/plug-ins`
+* OS X: `$HOME/Library/Application Support/GIMP/2.8/plug-ins/`
+
+You must **restart** GIMP after (un)installing the script, for it to appear.
+
+# Usage
+
+1. [Open the Palettes dock with Windows > Dockable Dialogs > Palettes][1]
+2. [Right-click an existing Palette and "Import ASE palette..."][2]
+3. [Navigate to the target ASE palette and hit OK][3]
+4. [Observe as the palette is imported and auto-selected][4]
+
+Note that if the ASE file has multiple palettes (as is possible, according to the spec),
+each palette will be imported as its own new palette file.
+
+# Issues
+
+* Palettes that use CMYK and LAB colors will convert to RGB inaccurately, meaning some of
+the colors may be off by one or two values. The plugin will warn you about this.
+* Grayscale palettes are not yet supported
+* The code is not exactly clean or DRY...
+
+# Notes
+
+References used for the ASE format:
+
+* http://carl.camera/default.aspx?id=109
+* http://www.selapa.net/swatches/colors/fileformats.php#adobe_ase
+* https://bazaar.launchpad.net/~olivier-berten/swatchbooker/trunk/view/head:/src/swatchbook/codecs/adobe_ase.py
+
+... and their archives, if they become lost to history:
+
+* http://archive.is/C2Fe6
+* http://archive.is/jFiTU
+* http://archive.is/AEB9m
+
+
+[ORIGINAL]: http://registry.gimp.org/node/10325
+[REDDIT]: https://www.reddit.com/r/GIMP/comments/80t574/kuler_palettes_to_gpl/
+[KULER]: https://color.adobe.com/
+[1]: https://i.imgur.com/lvaIRTi.jpg
+[2]: https://i.imgur.com/BLrLMSo.jpg
+[3]: https://i.imgur.com/fbsU3Rx.jpg
+[4]: https://i.imgur.com/DgJ62g0.jpg
