@@ -15,8 +15,8 @@ local repository, but renames its master branch to its own repo name.
 1. Repeat steps 1-3 for other repositories
 1. `git checkout --force master` - Switch back to master (root)
 1. `git read-tree ase2gimp Pinhead` - Stages the files and changes of the merges (for some reason, [they don't appear without this step][1])
-  * This cannot work on more than 8 branches at the same time, so must be done and the committed for each group of 8.
-  * Additionally, this will _remove_ or _overwrite_ changes per read-tree. Manual merge conflict resolution cannot be done with this command. I used GitExtensions to unstage file removals, thus treating each read-tree almost as an additive operation.
+    * This cannot work on more than 8 branches at the same time, so must be done and the committed for each group of 8.
+    * Additionally, this will _remove_ or _overwrite_ changes per read-tree. Manual merge conflict resolution cannot be done with this command. I used GitExtensions to unstage file removals, thus treating each read-tree almost as an additive operation.
 1. `git merge --allow-unrelated-histories ase2gimp Pinhead` - Merge the multiple repositories into one
 1. Use a GUI, such as Git Extensions, to resolve any merge conflicts
 1. Commit!
