@@ -24,5 +24,7 @@ local repository, but renames its master branch to its own repo name.
 # Behind the scenes
 
 * Preparing the git fetch commands: https://gfycat.com/ViciousPleasingCanine
+* The resulting git kraken: https://gfycat.com/SparklingSmoggyAmericantoad
+* On GitHub: https://github.com/RoyCurtis/GitFrankenstein/network
 
 [1]: https://stackoverflow.com/a/31186732/3354920
